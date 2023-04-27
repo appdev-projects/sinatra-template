@@ -1,4 +1,4 @@
-# RPS-RCAV
+# Sinatra-Template
 
 1. `bin/setup`
 2. `bin/dev`
