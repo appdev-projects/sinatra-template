@@ -1,5 +1,5 @@
-require './app'
-require './config/environment'
+File.file?('./app.rb') ? require('./app.rb') : nil
+File.file?('./config/environment.rb') ? require('./config/environment.rb') : nil
 require 'capybara/dsl'
 require "draft_matchers"
 require "rspec-html-matchers"
