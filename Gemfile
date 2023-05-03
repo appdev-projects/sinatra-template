@@ -15,7 +15,6 @@ group :development do
 end
 
 group :development, :test do
-  gem 'web_git', github: 'firstdraft/web_git'
   gem "grade_runner", github: "firstdraft/grade_runner"
   gem 'pry'
   gem 'sqlite3', '~> 1.4'
