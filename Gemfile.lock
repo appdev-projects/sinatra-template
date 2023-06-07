@@ -32,7 +32,7 @@ GEM
       rexml
     debug_inspector (1.1.0)
     diff-lcs (1.5.0)
-    draft_matchers (0.0.1)
+    draft_matchers (0.0.2)
       capybara
       color_namer
       rspec
@@ -143,7 +143,7 @@ DEPENDENCIES
   better_errors
   binding_of_caller
   capybara
-  draft_matchers
+  draft_matchers (~> 0.0.2)
   grade_runner
   i18n
   pry
