@@ -15,14 +15,14 @@ group :development do
 end
 
 group :development, :test do
-  gem "grade_runner", github: "firstdraft/grade_runner"
+  gem "grade_runner"
   gem 'pry'
   gem 'sqlite3', '~> 1.4'
 end
 
 group :test do
   gem 'capybara'
-  gem "draft_matchers", github: "jelaniwoods/draft_matchers", branch: "main"
+  gem "draft_matchers"
   gem 'rspec'
   gem 'rspec-html-matchers'
   gem 'webmock'
