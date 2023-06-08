@@ -2,6 +2,9 @@
 # objects and methods
 require 'sinatra'
 
+# require active record to make use of it
+require 'sinatra/activerecord'
+
 get('/') do
   "
   <h1>Welcome to your Sinatra App!</h1>
