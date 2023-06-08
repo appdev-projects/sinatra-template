@@ -1,6 +1,11 @@
 GEM
   remote: https://rubygems.org/
   specs:
+    activemodel (7.0.4.3)
+      activesupport (= 7.0.4.3)
+    activerecord (7.0.4.3)
+      activemodel (= 7.0.4.3)
+      activesupport (= 7.0.4.3)
     activesupport (7.0.4.3)
       concurrent-ruby (~> 1.0, >= 1.0.2)
       i18n (>= 1.6, < 2)
@@ -112,6 +117,9 @@ GEM
       rack (~> 2.2, >= 2.2.4)
       rack-protection (= 3.0.6)
       tilt (~> 2.0)
+    sinatra-activerecord (2.0.26)
+      activerecord (>= 4.1)
+      sinatra (>= 1.0)
     sinatra-contrib (3.0.6)
       multi_json
       mustermann (~> 3.0)
@@ -143,14 +151,16 @@ DEPENDENCIES
   better_errors
   binding_of_caller
   capybara
-  draft_matchers (~> 0.0.2)
+  draft_matchers
   grade_runner
   i18n
   pry
   puma (~> 5.0)
+  rake
   rspec
   rspec-html-matchers
   sinatra
+  sinatra-activerecord
   sinatra-contrib
   sqlite3 (~> 1.4)
   webdrivers
