@@ -22,7 +22,7 @@
 		".bundle": true,
     // ".*": true,
     // "*.ru": true,
-    "Dockerfile": true,
+    // "Dockerfile": true,
     // "Gem*": true,
     "install-packages": true,
     "main.rb": true,
