@@ -1,0 +1,25 @@
+<h1>Tasks</h1>
+
+<h2>Add New Task</h2>
+
+<form action="/tasks/create">
+  <label for="name">Name:</label>
+  <input type="text" name="query_task_name" id="name">
+
+  <label for="description">Description:</label>
+  <textarea name="query_task_description" id="description"></textarea>
+
+  <input type="submit" value="Create Task">
+</form>
+
+
+<h2>Task List</h2>
+
+<ul>
+  <% @tasks.each do |task| %>
+    <li>
+      <%= task.name %>
+      <a href="/tasks/<%= task.id %>">Show details</a>
+    </li>
+  <% end %>
+</ul>

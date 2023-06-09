@@ -1,0 +1,25 @@
+<h1><%= @task.name %> Details</h1>
+
+<p>
+  <a href="/delete_task/<%= @task.id %>">Delete Task</a>
+</p>
+
+<p>
+  <a href="/tasks">Back to Task List</a>
+</p>
+
+<div>
+  <%= @task.description %>
+</div>
+
+<h3>Edit task</h3>
+
+<form action="/update_task/<%= @task.id %>">
+  <label for="name">Name:</label>
+  <input type="text" name="query_task_name" id="name" value="<%= @task.name %>">
+
+  <label for="description">Description:</label>
+  <textarea name="query_task_description" id="description"><%= @task.description %></textarea>
+
+  <input type="submit" value="Update Task">
+</form>
