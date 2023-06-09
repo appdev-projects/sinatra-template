@@ -17,6 +17,8 @@ gem "rake"
 group :development do
   gem 'better_errors'
   gem 'binding_of_caller'
+  gem "table_print"
+  gem "appdev_support"
 end
 
 group :development, :test do
