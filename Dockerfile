@@ -35,6 +35,9 @@ COPY --from=build --chown=ruby:ruby /app /app
 # Copy application code
 COPY --chown=ruby:ruby . .
 
+# create database and migrate tables
+RUN ruby db/migrate/*.rb
+
 # Start the server
 EXPOSE 8080
 CMD ["bundle", "exec", "rackup", "--host", "0.0.0.0", "--port", "8080"]

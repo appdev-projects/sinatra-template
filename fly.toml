@@ -6,8 +6,8 @@
 app = "sinatra-task-list"
 primary_region = "sea"
 
-[deploy]
-  release_command = "bundle exec ruby /app/db/migrate/create_tasks.rb"
+#[deploy]
+#  release_command = "bundle exec ruby /app/db/migrate/create_tasks.rb"
 
 [http_service]
   internal_port = 8080
