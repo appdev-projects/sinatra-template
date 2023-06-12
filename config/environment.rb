@@ -33,5 +33,5 @@ configure :development do
   AppdevSupport.init
 
   # setup a database connection
-  set(:database, {adapter: "sqlite3", database: "db/development.sqlite3"})
+  set(:database, {adapter: "sqlite3", database: ENV.fetch('DATABASE_URL', 'db/development.sqlite3')})
 end
