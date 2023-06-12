@@ -35,8 +35,3 @@ configure :development do
   # setup a database connection
   set(:database, {adapter: "sqlite3", database: "db/development.sqlite3"})
 end
-
-configure :production do
-  # setup a database connection
-  set(:database, {adapter: "postgresql", database: ENV["DATABASE_URL"]})
-end
