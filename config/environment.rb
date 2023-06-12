@@ -10,7 +10,7 @@ configure do
   set(:erb, :layout => :application_layout)
 
   # setup a database connection
-  set(:database, {adapter: "sqlite3", database: "db/development.sqlite3"})
+  set(:database, {adapter: "sqlite3", database: ENV.fetch('DATABASE_LOCATION', 'db/development.sqlite3')})
 end
 
 configure :development do
