@@ -44,3 +44,6 @@ config/master.key
 **/.theia/.ltici_apitoken.yml
 **/.vscode/.ltici_apitoken.yml
 fly.toml
+
+# ignore your local database
+db/development.sqlite3
