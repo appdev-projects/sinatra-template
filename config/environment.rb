@@ -8,6 +8,9 @@ configure do
   # we can set the default layout name to use and sinatra 
   # will look for that file
   set(:erb, :layout => :application_layout)
+
+  # setup a database connection
+  set(:database, {adapter: "sqlite3", database: ENV.fetch('DATABASE_URL', 'db/development.sqlite3')})
 end
 
 configure :development do
@@ -31,7 +34,4 @@ configure :development do
     config.pryrc = :full;
     end
   AppdevSupport.init
-
-  # setup a database connection
-  set(:database, {adapter: "sqlite3", database: ENV.fetch('DATABASE_URL', 'db/development.sqlite3')})
 end
