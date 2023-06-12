@@ -15,7 +15,7 @@ primary_region = "sea"
 
 [mounts]
   source = "production_db"
-  destination = "/app/production_db"
+  destination = "/app/db/production_db"
 
 [env]
-  DATABASE_LOCATION = "/app/production_db/production.sqlite3"
+  DATABASE_LOCATION = "/app/db/production_db/production.sqlite3"
