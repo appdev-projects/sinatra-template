@@ -1,3 +1,3 @@
 #!/bin/bash
 
-rackup --port=3000
+rerun "rackup --port=3000"
