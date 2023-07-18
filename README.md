@@ -1,5 +1,3 @@
-# Sinatra-Template
+# sinatra-template
 
-1. `bin/setup`
-2. `bin/dev`
-3. ...
+Use this repository to create new Sinatra apps. 
