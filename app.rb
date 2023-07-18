@@ -1,9 +1,6 @@
 require "sinatra"
 require "sinatra/reloader"
 
-# require active record to make use of it
-require "sinatra/activerecord"
-
 get("/") do
   "
   <h1>Welcome to your Sinatra App!</h1>
