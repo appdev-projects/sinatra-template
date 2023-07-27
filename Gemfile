@@ -5,7 +5,7 @@ ruby "3.2.1"
 
 gem "sinatra"
 gem "sinatra-contrib"
-
+gem 'dotenv', '~> 2.8', '>= 2.8.1'
 # Use Puma as the app server
 gem "puma", "~> 5.0"
 
