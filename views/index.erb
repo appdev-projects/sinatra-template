@@ -1,0 +1,21 @@
+<!-- views/index.erb -->
+<h2>Click the button below to get your current location:</h2>
+<button onclick="getLocation()">Get My Location</button>
+
+<script>
+  function getLocation() {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(showPosition);
+    } else {
+      alert("Geolocation is not supported by this browser.");
+    }
+  }
+
+  function showPosition(position) {
+    const latitude = position.coords.latitude;
+    const longitude = position.coords.longitude;
+
+    // Redirect the user to the /location route with latitude and longitude as query parameters
+    window.location.href = `/location?lat=${latitude}&lng=${longitude}`;
+  }
+</script>

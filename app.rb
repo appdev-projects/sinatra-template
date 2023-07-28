@@ -1,8 +1,14 @@
 require "sinatra"
 require "sinatra/reloader"
-require 'open-uri'
-require "json"
 
+
+require "geocoder"
+require "httparty"
+require 'dotenv'
+
+Dotenv.load
+
+Geocoder.configure(ip_lookup: :ipinfo_io)
 
 
 get("/") do
@@ -10,27 +16,58 @@ get("/") do
   <h1>Welcome to your Sinatra App!</h1>
   <p>Define some routes in app.rb</p>
   "
+  erb :index
 end
 
-get '/get_user_location' do
-  content_type :json
 
-  # Replace YOUR_GOOGLE_API_KEY with your actual Google Geolocation API key.
-  api_key = 'YOUR_GOOGLE_API_KEY'
+get("/location") do
+  latitude = params[:lat]
+  longitude = params[:lng]
 
-  # Get the user's IP address from the request object.
-  user_ip = request.ip
+  location_data = Geocoder.search([latitude, longitude]).first
 
-  # Construct the Google Geolocation API URL.
-  url = "https://www.googleapis.com/geolocation/v1/geolocate?key=#{api_key}"
+  if location_data
+    @latitude = location_data.latitude
+    @longitude = location_data.longitude
+    @city = location_data.city
+    @country = location_data.country
+    @address = location_data.address
 
-  # Make a POST request to the Google Geolocation API.
-  response = JSON.parse(open(url, method: :post).read)
+    @movies_nearby = get_movies_nearby(@longitude, @latitude )
+    erb :location
+  else
+    erb :error
+  end
+end
 
-  # Return the location data as a JSON response.
-  {
-    latitude: response['location']['lat'],
-    longitude: response['location']['lng'],
-    accuracy: response['accuracy']
-  }.to_json
+def get_movies_nearby(latitude, longitude)
+  tmdb_api_key = ENV['TMDB_API_KEY']
+
+  url = "https://api.themoviedb.org/3/movie/now_playing"
+  params = {
+    api_key: tmdb_api_key,
+    language: 'en-US',
+    page: 1,
+    region: 'US', 
+    lat: latitude,
+    lon: longitude
+  }
+
+  response = HTTParty.get(url, query: params)
+
+  if response.code == 200
+    return JSON.parse(response.body)['results']
+  else
+    return []
+  end
+end
+
+get("/movies") do
+  @latitude = params[:lat]
+  @longitude = params[:lng]
+
+
+  @movies_nearby = get_movies_nearby(@latitude, @longitude)
+
+  erb :movies
 end
