@@ -1,4 +1,3 @@
-<!-- views/index.erb -->
 <h2>Click the button below to get your current location:</h2>
 <button onclick="getLocation()">Get My Location</button>
 
@@ -15,7 +14,8 @@
     const latitude = position.coords.latitude;
     const longitude = position.coords.longitude;
 
-    // Redirect the user to the /location route with latitude and longitude as query parameters
     window.location.href = `/location?lat=${latitude}&lng=${longitude}`;
   }
 </script>
+
+<a href="/movies">Get movies</a>
