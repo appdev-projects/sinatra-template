@@ -4,9 +4,7 @@ require "sinatra/reloader"
 
 require "geocoder"
 require "httparty"
-require 'dotenv'
 
-Dotenv.load
 
 Geocoder.configure(ip_lookup: :ipinfo_io)
 
