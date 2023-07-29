@@ -33,7 +33,7 @@ end
 
 get("/movies") do
   @latitude = params[:lat]
-  @longitude = params[:lon]
+  @longitude = params[:lng]
 
   @movies_nearby = get_movies_nearby(@latitude, @longitude)
 
