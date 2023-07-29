@@ -1,37 +1,12 @@
 require "sinatra"
 require "sinatra/reloader"
-
-
 require "geocoder"
 require "httparty"
 
-
 Geocoder.configure(ip_lookup: :ipinfo_io)
-
 
 get("/") do
   erb :index
-end
-
-
-get("/location") do
-  latitude = params[:lat]
-  longitude = params[:lng]
-
-  location_data = Geocoder.search([latitude, longitude]).first
-
-  if location_data
-    @latitude = location_data.latitude
-    @longitude = location_data.longitude
-    @city = location_data.city
-    @country = location_data.country
-    @address = location_data.address
-
-    @movies_nearby = get_movies_nearby(@longitude, @latitude )
-    erb :location
-  else
-    erb :error
-  end
 end
 
 def get_movies_nearby(latitude, longitude)
@@ -59,7 +34,6 @@ end
 get("/movies") do
   @latitude = params[:lat]
   @longitude = params[:lng]
-
 
   @movies_nearby = get_movies_nearby(@latitude, @longitude)
 
