@@ -1,13 +1,10 @@
-# fly.toml app configuration file generated for green-night-9358 on 2023-07-27T09:49:54-05:00
+# fly.toml app configuration file generated for nowplaying on 2023-07-28T20:57:25Z
 #
 # See https://fly.io/docs/reference/configuration/ for information about how to use this file.
 #
 
-app = "green-night-9358"
+app = "nowplaying"
 primary_region = "ord"
-
-[build]
-  image = "flyio/hellofly:latest"
 
 [http_service]
   internal_port = 8080
