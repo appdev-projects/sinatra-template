@@ -1,8 +1,10 @@
 <h2>Movies Playing Nearby:</h2>
 <ul>
+
   <% @movies_nearby.each do |movie| %>
     <li>
       <%= movie['title'] %> (Release Date: <%= movie['release_date'] %>)
+      <p> Description: <%= movie['overview'] %></p>
     </li>
   <% end %>
 </ul>
