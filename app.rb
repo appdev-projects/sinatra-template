@@ -9,7 +9,7 @@ get("/") do
   erb :index
 end
 
-def get_movies_nearby(latitude, longitude)
+def get_movies_nearby()
   tmdb_api_key = ENV['TMDB_API_KEY']
 
   url = "https://api.themoviedb.org/3/movie/now_playing"
@@ -18,8 +18,6 @@ def get_movies_nearby(latitude, longitude)
     language: 'en-US',
     page: 1,
     region: 'US', 
-    lat: latitude,
-    lng: longitude
   }
 
   response = HTTParty.get(url, query: params)
@@ -35,13 +33,13 @@ def get_movies_nearby(latitude, longitude)
 end
 
 get("/movies") do
-  @latitude = params[:lat]
-  @longitude = params[:lng]
+  # @latitude = params[:lat]
+  # @longitude = params[:lng]
 
-  @latitude ||= 0.0
-  @longitude ||= 0.0
-  
-  @movies_nearby = get_movies_nearby(@latitude, @longitude)
+  # @latitude ||= 0.0
+  # @longitude ||= 0.0
+
+  @movies_nearby = get_movies_nearby()
 
   erb :movies
 end
