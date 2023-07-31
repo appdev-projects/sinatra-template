@@ -8,7 +8,7 @@ gem "sinatra-contrib"
 
 gem 'geocoder', '~> 1.3', '>= 1.3.7'
 gem 'httparty', '~> 0.13.7'
-# Use Puma as the app server
+
 gem "puma", "~> 5.0"
 
 # use active record

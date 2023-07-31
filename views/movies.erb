@@ -1,11 +1,15 @@
 <h2>Movies Playing Nearby:</h2>
 <a href="/">Go back</a>
 <ul>
-
   <% @movies_nearby.each do |movie| %>
     <li>
-      <%= movie['title'] %> (Release Date: <%= movie['release_date'] %>)
-      <p> Description: <%= movie['overview'] %></p>
+      <% if movie['poster_path'] %>
+        <img src="https://image.tmdb.org/t/p/w200<%= movie['poster_path'] %>" alt="<%= movie['title'] %> Poster">
+      <% else %>
+        <img src="https://example.com/placeholder-image.jpg" alt="No Poster Available">
+      <% end %>
+      <h3><%= movie['title'] %> (Release Date: <%= movie['release_date'] %>)</h3>
+      <p>Description: <%= movie['overview'] %></p>
     </li>
   <% end %>
 </ul>
