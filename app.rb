@@ -22,8 +22,6 @@ def get_movies_nearby()
 
   response = HTTParty.get(url, query: params)
 
-  puts "API Response:"
-  puts JSON.parse(response.body)['results']
 
   if response.code == 200
     return JSON.parse(response.body)['results']
