@@ -34,8 +34,7 @@
       "extensions": ["vortizhe.simple-ruby-erb",
                      "mbessey.vscode-rufo",
                      "aliariff.vscode-erb-beautify",
-                     "eamodio.gitlens",
-                     "setobiralo.erb-commenter"]
+                     "eamodio.gitlens"]
     }
   }
 
