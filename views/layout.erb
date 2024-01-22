@@ -6,7 +6,51 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
   </head>
 
+  <style>
+    @font-face {
+        font-family: 'Calculator';
+        font-style: normal;
+        font-weight: 400;
+        src:local("..\calc_font\Calculator.woff");
+    }
+
+    .buttons {
+        display: grid;
+        grid-template-columns: 100px 100px 100px 100px;
+        gap: 5px;
+    }
+
+    .button {
+        padding: 20px 0px;
+        text-align: center;
+    }
+
+    .function {
+        background-color: coral;
+    }
+
+    .number {
+        background-color: bisque;
+    }
+
+    .calculator {
+        width: fit-content;
+    }
+
+    .display {
+        border: 1px solid;
+        margin-bottom: 5px;
+        padding: 15px 10px;
+        text-align: right;
+        font-family: Calculator;
+        font-size: large;
+    }
+
+  </style>
+
   <body>
+
+
     <%= yield %>
   </body>
 </html>
