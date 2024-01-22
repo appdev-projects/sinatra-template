@@ -7,50 +7,80 @@
   </head>
 
   <style>
-    @font-face {
-        font-family: 'Calculator';
-        font-style: normal;
-        font-weight: 400;
-        src:local("..\calc_font\Calculator.woff");
-    }
 
-    .buttons {
-        display: grid;
-        grid-template-columns: 100px 100px 100px 100px;
-        gap: 5px;
-    }
+@font-face{ 
+  font-family: 'CalculatorFont';
+  src: url('views/fonts/Calculator.ttf') format('truetype');
+}
 
-    .button {
-        padding: 20px 0px;
-        text-align: center;
-    }
 
-    .function {
-        background-color: coral;
-    }
+.buttons {
+  display: grid;
+  /*grid-template-columns: 50px 50px 50px 50px;*/
+  grid-template-columns: repeat(4, 1fr);
+  gap: 2px;
+}
 
-    .number {
-        background-color: bisque;
-    }
+.button {
 
-    .calculator {
-        width: fit-content;
-    }
+  padding: 20px 0px;
+  text-align: center;
+}
 
-    .display {
-        border: 1px solid;
-        margin-bottom: 5px;
-        padding: 15px 10px;
-        text-align: right;
-        font-family: Calculator;
-        font-size: large;
-    }
+.function {
+  background-color: coral;
+}
+
+.number {
+
+  background-color: bisque;
+}
+
+.calculator {
+
+  border: 5px solid;
+  border-radius: 5px;
+  background-color: black;
+  padding: 10px 10px;
+  margin: auto;
+  width: 60%;
+  
+  justify-content: center;
+  width: fit-content;
+}
+
+.display_area {
+    border: 1px solid;
+    background-color: #9fa1a6;
+    margin-bottom: 10px;
+}
+
+.display {
+  padding: 0px 10px;
+  text-align: right;
+  font-family: 'CalculatorFont', Arial, sans-serif;
+  font-size: 25px;
+}
 
   </style>
+  
 
   <body>
-
+  <div class="calculator">
+      <div class="display_area">
+          <div class="display">00000001</div>
+          <div class="display">This is a test</div>
+          <div class="display">The quick brown fox jumped over the(lazy)dogs</div>
+          <div class="display">00000001</div>
+          <div class="display">00000001</div>
+          <div class="display">00000001</div>
+          <div class="display">00000001</div>
+          <div class="display">00000001</div>
+      </div>
 
     <%= yield %>
+
+  </div>
+
   </body>
 </html>
