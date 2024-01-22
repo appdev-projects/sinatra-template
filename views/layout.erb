@@ -4,66 +4,8 @@
     <title>Sinatra Template</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
+      <link rel="stylesheet" href="views/styles/stylesheet.css">
   </head>
-
-  <style>
-
-@font-face{ 
-  font-family: 'CalculatorFont';
-  src: url('views/fonts/Calculator.ttf') format('truetype');
-}
-
-
-.buttons {
-  display: grid;
-  /*grid-template-columns: 50px 50px 50px 50px;*/
-  grid-template-columns: repeat(4, 1fr);
-  gap: 2px;
-}
-
-.button {
-
-  padding: 20px 0px;
-  text-align: center;
-}
-
-.function {
-  background-color: coral;
-}
-
-.number {
-
-  background-color: bisque;
-}
-
-.calculator {
-
-  border: 5px solid;
-  border-radius: 5px;
-  background-color: black;
-  padding: 10px 10px;
-  margin: auto;
-  width: 60%;
-  
-  justify-content: center;
-  width: fit-content;
-}
-
-.display_area {
-    border: 1px solid;
-    background-color: #9fa1a6;
-    margin-bottom: 10px;
-}
-
-.display {
-  padding: 0px 10px;
-  text-align: right;
-  font-family: 'CalculatorFont', Arial, sans-serif;
-  font-size: 25px;
-}
-
-  </style>
-  
 
   <body>
   <div class="calculator">

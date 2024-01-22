@@ -1,0 +1,58 @@
+@font-face{ 
+  font-family: 'CalculatorFont';
+  src: url('../fonts/Calculator.ttf') format('truetype');
+}
+
+@font-face{
+  font-family: 'ButtonFont';
+  src: url('open-sauce.sans-black.ttf') format('truetype');
+}
+.buttons {
+  display: grid;
+  /*grid-template-columns: 50px 50px 50px 50px;*/
+  grid-template-columns: repeat(4, 1fr);
+  gap: 2px;
+}
+
+.button {
+
+  padding: 20px 0px;
+  text-align: center;
+  font-family: 'ButtonFont', Arial, sans-serif;
+  font-size: 20px;
+}
+
+.function {
+  background-color: coral;
+}
+
+.number {
+
+  background-color: bisque;
+}
+
+.calculator {
+
+  border: 5px solid;
+  border-radius: 5px;
+  background-color: black;
+  padding: 10px 10px;
+  margin: auto;
+  width: 60%;
+  
+  justify-content: center;
+  width: fit-content;
+}
+
+.display_area {
+    border: 1px solid;
+    background-color: #9fa1a6;
+    margin-bottom: 10px;
+}
+
+.display {
+  padding: 0px 10px;
+  text-align: right;
+  font-family: 'CalculatorFont', Arial, sans-serif;
+  font-size: 25px;
+}
