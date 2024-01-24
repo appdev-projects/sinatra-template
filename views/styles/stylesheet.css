@@ -7,29 +7,8 @@
   font-family: 'ButtonFont';
   src: url('open-sauce.sans-black.ttf') format('truetype');
 }
-.buttons {
-  display: grid;
-  /*grid-template-columns: 50px 50px 50px 50px;*/
-  grid-template-columns: repeat(4, 1fr);
-  gap: 2px;
-}
 
-.button {
-
-  padding: 20px 0px;
-  text-align: center;
-  font-family: 'ButtonFont', Arial, sans-serif;
-  font-size: 20px;
-}
-
-.function {
-  background-color: coral;
-}
-
-.number {
-
-  background-color: bisque;
-}
+/* Calculator body */
 
 .calculator {
 
@@ -41,18 +20,85 @@
   width: 60%;
   
   justify-content: center;
-  width: fit-content;
+  width: 400px;
 }
 
+/* LCD display : */
+
 .display_area {
-    border: 1px solid;
-    background-color: #9fa1a6;
-    margin-bottom: 10px;
+  border: 1px solid;
+  background-color: #9fa1a6;
+  margin-bottom: 10px;
 }
 
 .display {
-  padding: 0px 10px;
-  text-align: right;
-  font-family: 'CalculatorFont', Arial, sans-serif;
-  font-size: 25px;
+padding: 0px 10px;
+text-align: right;
+font-family: 'CalculatorFont', Arial, sans-serif;
+font-size: 25px;
+}
+
+/* Buttons : */
+
+.buttons {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 2px;
+}
+
+.bottom_row_buttons {
+  padding: 2px 0px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 2fr;
+  gap: 2px;
+}
+
+.button {
+  padding: 20px 0px;
+  text-align: center;
+  font-family: 'ButtonFont', Arial, sans-serif;
+  font-size: 20px;
+}
+
+.all_clear_button {
+  background-color: red;
+}
+
+.number {
+  background-color: whitesmoke;
+}
+
+.function {
+  background-color: yellow;
+}
+
+/* Calculator mode selection row : */
+.mode_selection_area {
+  padding: 10px 5px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 2px;
+}
+
+.mode_buttons {
+  padding: 20px 0px;
+  text-align: center;
+  font-family: 'ButtonFont', Arial, sans-serif;
+  font-size: 20px;
+}
+
+.basic_button {
+  background-color: teal;
+}
+
+.scientific_button {
+  background-color: blue;
+}
+
+.gpt_button {
+  background-color: green;
+}
+
+.games_button {
+  background-color: orangered;
 }
