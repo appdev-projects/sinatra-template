@@ -19,17 +19,31 @@ class Display
     end
 
     #-------------------------------
-    #Not sure why we have this here, we will comment out for now :
 
-    #def set_display(location, display_output)
+    def set_display(location, display_output, new_line = false)
 
-    #    if location < self.history_size
-    #      @display_history[location] = display_output
-    #    end
+        if location > @history_size-1
+          location = @history_size-1
+        end
 
-    #end
+        if !new_line
+          @display_history[location] += display_output
+        else
+          @display_history[location] = display_output
+        end
+  
+    end
 
     #-------------------------------
+
+    def current_line()
+
+      @display_history[@history_size-1]
+
+    end
+
+    #-------------------------------
+
 
     def add_to_history(message_string)
 
