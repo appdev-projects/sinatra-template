@@ -6,13 +6,13 @@ class Display
      
       @display_history = Array.new(@history_size, " ")
 
-      puts ("INSIDE CLASS DISPLAY :")
+      @test_variable = 40
 
     end
 
     #-------------------------------
     
-    def show_window(upper_range, lower_range)
+    def window(lower_range, upper_range)
     
         @display_history.slice(lower_range, upper_range)       
 
@@ -20,40 +20,54 @@ class Display
 
     #-------------------------------
 
-    def set_display(location, display_output)
+    #def set_display(location, display_output)
 
-        if location < @history_size
-          @display_history[location] = display_output
-        end
+    #    if location < self.history_size
+    #      @display_history[location] = display_output
+    #    end
 
-    end
+    #end
 
     #-------------------------------
 
     def add_to_history(message_string)
 
-        puts "Adding to history :"
-
         history_counter = 0
-        
-        while history_counter < @history_size-1 do
+
+        while history_counter < @history_size do
 
           temporary_string = @display_history[history_counter+1]
-          @display_history = temporary_string
+          @display_history[history_counter] = temporary_string
           history_counter += 1
 
         end
 
-        @display_history[@history_size-1] = message_string
+        @display_history[history_counter-1] = message_string
+
 
         # We'll keep this here for testing purposes :
-        @display_history.each{ |history_string|
-            puts "--> #{history_string}"   
-        }
+
+        #counter = 0
+        #@display_history.each{ |history_string|
+        #    counter += 1
+        #    puts "line #{counter}--> #{history_string}"   
+        #}
 
     end
 
     #-------------------------------
+
+    def reset_display()
+        
+        end_of_array = @display_history.length()-1
+
+        for counter in 0..end_of_array
+   
+           @display_history[counter] = " "
+
+        end
+
+    end
 
 
 end # Of class

@@ -32,6 +32,7 @@
 }
 
 .display {
+white-space: pre;
 padding: 0px 10px;
 text-align: right;
 font-family: 'CalculatorFont', Arial, sans-serif;

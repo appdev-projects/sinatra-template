@@ -9,9 +9,14 @@
 
   <body>
   <div class="calculator">
+
       <div class="display_area">
-           <div class="display">00000001</div>
+          <% @display_array.each do |output| %>
+             <div class="display"><%= output %></div>
+          <% end %>
+          
       </div>
+
       <div class ="mode_selection_area">
           <div class="basic_button mode_buttons">BASIC</div>
           <div class="scientific_button mode_buttons">SCI</div>
