@@ -19,6 +19,7 @@ class Display
     end
 
     #-------------------------------
+    #Not sure why we have this here, we will comment out for now :
 
     #def set_display(location, display_output)
 
