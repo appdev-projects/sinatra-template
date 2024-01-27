@@ -23,8 +23,6 @@ get("/") do
 
   calc_display.add_to_history("Welcome to OMNICALC4 !!")
   calc_display.add_to_history("Have fun !!")
-  calc_display.add_to_history(" ")
-  
 
   redirect("/basic")
   
