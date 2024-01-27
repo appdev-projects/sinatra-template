@@ -36,9 +36,13 @@ class Display
 
     #-------------------------------
 
-    def current_line()
+    def history_line(line_number)
 
-      @display_history[@history_size-1]
+      if line_number >= @history_size
+           @display_history[@history_size-1]
+      else
+           @display_history[line_number]
+      end
 
     end
 
