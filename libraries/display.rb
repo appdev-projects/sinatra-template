@@ -6,7 +6,6 @@ class Display
      
       @display_history = Array.new(@history_size, " ")
 
-      @test_variable = 40
 
     end
 
