@@ -36,9 +36,13 @@ get("/basic") do
 
 end
 
-get("/:input_data") do
+get("/basic_calc/:input_data") do
 
-    input_array = params.fetch("input_data").split(":")
+    input_data = params.fetch("input_data")
+
+    input_array = input_data.split(":")
+
+    calc_input = " "
     
     calc_input = input_array[0]
     calc_mode = input_array[1]
@@ -91,14 +95,6 @@ get("/:input_data") do
 
     end    
 
-#-------------------------
-    case calc_mode
-
-        when "basic"
-          redirect("/basic")
-        when "sci"
-          redirect("/scientific")
-
-    end
+    redirect("/basic")
 
 end
