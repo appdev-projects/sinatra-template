@@ -150,6 +150,13 @@ textarea {
 
 }
 
+.gpt_display {
+  white-space: pre;
+  padding: 0px 10px;
+  text-align: left;
+  font-family: 'CalculatorFont', Arial, sans-serif;
+  font-size: 25px;
+  }
 
 /* Calculator mode selection row : */
 .mode_selection_area {

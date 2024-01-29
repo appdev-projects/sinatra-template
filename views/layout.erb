@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Sinatra Template</title>
+    <title>OMNICALC 4</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
       <link rel="stylesheet" href="views/styles/stylesheet.css">
@@ -11,16 +11,25 @@
   <div class="calculator">
 
       <div class="display_area">
+
           <% @display_array.each do |output| %>
-             <div class="display"><%= output %></div>
+
+              <% if @calculator_mode == "gpt" %>
+                 <div class = "gpt_display"><%= output %></div>
+
+              <% else %>    
+                 <div class="display"><%= output %></div>
+
+              <% end %>
+              
           <% end %>
           
       </div>
 
       <div class ="mode_selection_area">
-          <a href="/basic"><div class="basic_button mode_buttons">BASIC</div></a>
-          <a href="/scientific"><div class="scientific_button mode_buttons">SCI</div></a>
-          <a href="/gpt"><div class="gpt_button mode_buttons">GPT</div></a>
+          <a href="/process_calc/AC:BAS"><div class="basic_button mode_buttons">BASIC</div></a>
+          <a href="/process_calc/AC:SCI"><div class="scientific_button mode_buttons">SCI</div></a>
+          <a href="/process_calc/AC:GPT"><div class="gpt_button mode_buttons">GPT</div></a>
           <a href="/games"><div class="games_button mode_buttons">GAMES</div></a>
       </div>
 

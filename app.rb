@@ -8,14 +8,20 @@ require "./libraries/display.rb"     # For our display.
 
 MATH_API = "http://api.mathjs.org/v4/?expr="
 
-@display_array = Array.new(8)
+display_size = 8
 lower_display_range = 0
 upper_display_range = 7
+
+@display_array = Array.new(display_size)
+@calculator_mode = "basic"
 
 calc_display = Display.new
 calc_object = Calculator.new
 
 calc_start = true
+
+#========================================================
+#========================================================
 
 get("/") do
 
@@ -28,7 +34,7 @@ get("/") do
   
 end
 
-#-------------------------------------------------
+#========================================================
 
 get("/process_calc/:input_data") do
 
@@ -47,7 +53,6 @@ get("/process_calc/:input_data") do
     case calc_input
 
       # Simple math :
-
       when "DIV"
         calc_input = "/"
 
@@ -165,7 +170,7 @@ get("/process_calc/:input_data") do
 
     end    
 
-#-------------------------------------------
+#----------------------------------------------
     
     case calc_mode
 
@@ -182,13 +187,67 @@ get("/process_calc/:input_data") do
 
 end
 
-#-------------------------------------------
+#========================================================
 
+post("/get_response") do
+
+  gpt_message = params.fetch("gpt_message")
+
+  calc_display.reset_display
+
+  open_ai_api_key = ENV.fetch("OPEN_AI_KEY")
+
+  request_headers_hash = {
+    "Authorization" => "Bearer #{open_ai_api_key}",
+    "content-type" => "application/json"
+  }
+
+  request_body_hash = {
+    "model" => "gpt-3.5-turbo",
+    "messages" => [
+    {
+      "role" => "user",
+      "content" => "#{gpt_message}"
+    }
+   ]
+  }
+
+  request_body_json = JSON.generate(request_body_hash)
+
+  raw_response = HTTP.headers(request_headers_hash).post(
+        "https://api.openai.com/v1/chat/completions",
+        :body => request_body_json
+  ).to_s
+
+  parsed_response = JSON.parse(raw_response, object_class: OpenStruct)
+
+  gpt_response = parsed_response.choices[0].message.content   
+
+  # Format and adjust the response on the screen so that it can be
+  # read by the user.
+
+  calc_display.format_and_display(gpt_response)
+
+  lower_display_range = 0
+
+  upper_display_range = display_size-1
+
+  redirect("/gpt")
+
+end
+
+
+#========================================================
 
 get("/basic") do
 
-  upper_display_range = 39
-  lower_display_range = 32
+  upper_display_range = calc_display.get_history_size - 1
+  lower_display_range = upper_display_range - display_size
+  
+  puts " mode : #{@calculator_mode}"
+
+
+  @calculator_mode = "basic"
 
   @display_array = calc_display.window(lower_display_range, upper_display_range)
 
@@ -196,13 +255,18 @@ get("/basic") do
 
 end
 
-#-------------------------------------------
+#========================================================
 
 
 get("/scientific") do
 
-  upper_display_range = 39
-  lower_display_range = 32
+  upper_display_range = calc_display.get_history_size - 1
+  lower_display_range = upper_display_range - display_size
+
+  puts " mode : #{@calculator_mode}"
+
+
+  @calculator_mode = "scientific"
 
   @display_array = calc_display.window(lower_display_range, upper_display_range)
 
@@ -211,52 +275,14 @@ get("/scientific") do
 end
 
 
-#-------------------------------------------
+#========================================================
 
 get("/gpt") do
 
-  calc_display.reset_display
-
   @display_array = calc_display.window(lower_display_range, upper_display_range)
 
+  @calculator_mode = "gpt"
+
   erb(:gpt_calculator)
-
-end
-
-#-------------------------------------------
-
-post("/get_response") do
-
-    open_ai_api_key = ENV.fetch("OPEN_AI_KEY")
-
-    request_headers_hash = {
-      "Authorization" => "Bearer #{open_ai_api_key}",
-      "content-type" => "application/json"
-    }
-  
-    request_body_hash = {
-      "model" => "gpt-3.5-turbo",
-      "messages" => [
-      {
-        "role" => "user",
-        "content" => "#{user_message}"
-      }
-     ]
-    }
-  
-    request_body_json = JSON.generate(request_body_hash)
-  
-    raw_response = HTTP.headers(request_headers_hash).post(
-          "https://api.openai.com/v1/chat/completions",
-          :body => request_body_json
-    ).to_s
-  
-    parsed_response = JSON.parse(raw_response, object_class: OpenStruct)
-  
-    gpt_response = parsed_response.choices[0].message.content   
-
-    calc_display.format_and_display(gpt_response)
-
-
 
 end

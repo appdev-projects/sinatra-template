@@ -3,7 +3,7 @@ class Display
     def initialize 
       # We are going to hardcode some things here :
       @history_size = 40
-      @ultimate_line_length = 38
+      @ultimate_line_length = 40
      
       @display_history = Array.new(@history_size, " ")
 
@@ -95,23 +95,34 @@ class Display
 
         line_count = 0
 
-        while string_to_format > @ultimate_line_length do
-
-          line_count += 1
+        while string_to_format.length > @ultimate_line_length do
 
           temp_string = string_to_format.slice(0, @ultimate_line_length)
 
           puts "Test: #{temp_string}"
 
-          self.add_to_history(temp_string)
+          self.set_display(line_count, temp_string)
 
-          string_to_format = temp_string
+          string_to_format = string_to_format.slice(@ultimate_line_length, string_to_format.length)
+
+          line_count += 1
           
         end
+
+        self.set_display(line_count, string_to_format)
+
+        line_count
     
     end
 
     #-------------------------------
+
+    def get_history_size()
+
+      @history_size
+
+    end
+
 
 
 end # Of class
