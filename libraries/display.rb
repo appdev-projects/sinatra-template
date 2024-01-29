@@ -3,7 +3,7 @@ class Display
     def initialize 
       # We are going to hardcode some things here :
       @history_size = 40
-      @ultimate_line_length = 40
+      @ultimate_line_length = 38
      
       @display_history = Array.new(@history_size, " ")
 
@@ -12,9 +12,9 @@ class Display
 
     #-------------------------------
     
-    def window(lower_range, upper_range)
+    def window(lower_range, number_of_lines)
     
-        @display_history.slice(lower_range, upper_range)       
+        @display_history.slice(lower_range, number_of_lines)       
 
     end
 
@@ -64,15 +64,6 @@ class Display
 
         @display_history[history_counter-1] = message_string
 
-
-        # We'll keep this here for testing purposes :
-
-        #counter = 0
-        #@display_history.each{ |history_string|
-        #    counter += 1
-        #    puts "line #{counter}--> #{history_string}"   
-        #}
-
     end
 
     #-------------------------------
@@ -98,9 +89,9 @@ class Display
         while string_to_format.length > @ultimate_line_length do
 
           temp_string = string_to_format.slice(0, @ultimate_line_length)
-
-          puts "Test: #{temp_string}"
-
+    
+          temp_string = temp_string.gsub("\n","  ")
+          
           self.set_display(line_count, temp_string)
 
           string_to_format = string_to_format.slice(@ultimate_line_length, string_to_format.length)
@@ -122,7 +113,5 @@ class Display
       @history_size
 
     end
-
-
 
 end # Of class

@@ -13,6 +13,7 @@ lower_display_range = 0
 upper_display_range = 7
 
 @display_array = Array.new(display_size)
+
 @calculator_mode = "basic"
 
 calc_display = Display.new
@@ -52,7 +53,8 @@ get("/process_calc/:input_data") do
 
     case calc_input
 
-      # Simple math :
+      # Basic :
+
       when "DIV"
         calc_input = "/"
 
@@ -118,6 +120,26 @@ get("/process_calc/:input_data") do
       when "MOD"
         calc_input = "mod("
 
+      # GPT
+      when "UP"
+        calc_input = ""
+
+        if lower_display_range > 0
+            lower_display_range -= 1
+            upper_display_range -= 1
+        end
+        
+
+
+      when "DOWN"
+        calc_input = ""
+
+        if upper_display_range < calc_display.get_history_size-1
+            lower_display_range += 1
+            upper_display_range += 1
+        end
+
+        
 
       # Constants :
       when "E"
@@ -243,9 +265,6 @@ get("/basic") do
 
   upper_display_range = calc_display.get_history_size - 1
   lower_display_range = upper_display_range - display_size
-  
-  puts " mode : #{@calculator_mode}"
-
 
   @calculator_mode = "basic"
 
@@ -263,9 +282,6 @@ get("/scientific") do
   upper_display_range = calc_display.get_history_size - 1
   lower_display_range = upper_display_range - display_size
 
-  puts " mode : #{@calculator_mode}"
-
-
   @calculator_mode = "scientific"
 
   @display_array = calc_display.window(lower_display_range, upper_display_range)
@@ -279,7 +295,7 @@ end
 
 get("/gpt") do
 
-  @display_array = calc_display.window(lower_display_range, upper_display_range)
+  @display_array = calc_display.window(lower_display_range, display_size)
 
   @calculator_mode = "gpt"
 
