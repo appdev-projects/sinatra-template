@@ -215,6 +215,8 @@ end
 
 get("/gpt") do
 
+  calc_display.reset_display
+
   @display_array = calc_display.window(lower_display_range, upper_display_range)
 
   erb(:gpt_calculator)
@@ -223,7 +225,7 @@ end
 
 #-------------------------------------------
 
-get("/get_response")
+post("/get_response") do
 
     open_ai_api_key = ENV.fetch("OPEN_AI_KEY")
 
@@ -252,5 +254,9 @@ get("/get_response")
     parsed_response = JSON.parse(raw_response, object_class: OpenStruct)
   
     gpt_response = parsed_response.choices[0].message.content   
+
+    calc_display.format_and_display(gpt_response)
+
+
 
 end

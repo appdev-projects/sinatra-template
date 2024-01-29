@@ -89,5 +89,29 @@ class Display
 
     end
 
+    #-------------------------------
+
+    def format_and_display(string_to_format)
+
+        line_count = 0
+
+        while string_to_format > @ultimate_line_length do
+
+          line_count += 1
+
+          temp_string = string_to_format.slice(0, @ultimate_line_length)
+
+          puts "Test: #{temp_string}"
+
+          self.add_to_history(temp_string)
+
+          string_to_format = temp_string
+          
+        end
+    
+    end
+
+    #-------------------------------
+
 
 end # Of class
