@@ -3,6 +3,8 @@ class Calculator
   def initialize
       @running_amount = ""
       @MATH_API = "http://api.mathjs.org/v4/?expr="
+      @parenthesis_status = "CLOSED"
+
   end # Of method
 
 #---------------------------------
@@ -23,12 +25,11 @@ class Calculator
 
 #---------------------------------
 
-
-  def get_running_amount()
+def get_running_amount()
 
     @running_amount.to_s
 
-  end
+end
 
   #---------------------------------
 

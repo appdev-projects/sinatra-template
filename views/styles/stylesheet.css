@@ -8,6 +8,7 @@
   src: url('open-sauce.sans-black.ttf') format('truetype');
 }
 
+
 /* Calculator body */
 
 .calculator {
@@ -39,7 +40,7 @@ font-family: 'CalculatorFont', Arial, sans-serif;
 font-size: 25px;
 }
 
-/* Buttons : */
+/* Buttons (Basic calculator) : */
 
 a:link, a:visited {
   text-decoration: none;
@@ -77,6 +78,59 @@ a:link, a:visited {
 .function {
   background-color: yellow;
 }
+
+/* Scientific calculator */
+
+.sci_regular_buttons {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 2px;
+}
+
+.sci_button {
+  padding: 20px 0px;
+  text-align: center;
+  font-family: 'ButtonFont', Arial, sans-serif;
+  font-size: 20px;
+}
+
+
+.sci_last_row {
+  padding: 2px 0px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 2fr;
+  gap: 2px;
+}
+
+
+.math_button {
+  background-color: #6699cc
+}
+
+/* Chat GPT */
+
+.controls_buttons {
+  display: grid;
+  grid-template-columns: 1fr 3fr 1fr;
+  gap: 2px;
+}
+
+.control_button_style {
+  padding: 20px 0px;
+  margin: 20px;
+  text-align: center;
+  font-family: 'ButtonFont', Arial, sans-serif;
+  font-size: 30px;
+}
+
+.control_color {
+  background-color:rgb(22, 75, 50)
+}
+
+.clear_control_color {
+  background-color: yellow;
+}
+
 
 /* Calculator mode selection row : */
 .mode_selection_area {

@@ -3,6 +3,7 @@ class Display
     def initialize 
       # We are going to hardcode some things here :
       @history_size = 40
+      @ultimate_line_length = 38
      
       @display_history = Array.new(@history_size, " ")
 
@@ -27,6 +28,7 @@ class Display
 
         if !new_line
           @display_history[location] += display_output
+
         else
           @display_history[location] = display_output
         end
