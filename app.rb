@@ -220,3 +220,37 @@ get("/gpt") do
   erb(:gpt_calculator)
 
 end
+
+#-------------------------------------------
+
+get("/get_response")
+
+    open_ai_api_key = ENV.fetch("OPEN_AI_KEY")
+
+    request_headers_hash = {
+      "Authorization" => "Bearer #{open_ai_api_key}",
+      "content-type" => "application/json"
+    }
+  
+    request_body_hash = {
+      "model" => "gpt-3.5-turbo",
+      "messages" => [
+      {
+        "role" => "user",
+        "content" => "#{user_message}"
+      }
+     ]
+    }
+  
+    request_body_json = JSON.generate(request_body_hash)
+  
+    raw_response = HTTP.headers(request_headers_hash).post(
+          "https://api.openai.com/v1/chat/completions",
+          :body => request_body_json
+    ).to_s
+  
+    parsed_response = JSON.parse(raw_response, object_class: OpenStruct)
+  
+    gpt_response = parsed_response.choices[0].message.content   
+
+end

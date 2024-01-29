@@ -131,6 +131,25 @@ a:link, a:visited {
   background-color: yellow;
 }
 
+textarea {
+  width: 100%;
+  border-radius: 4px;
+  background-color: #9fa1a6;
+  font-size: 25px;
+  font-family: 'CalculatorFont', Arial, sans-serif;
+  resize: none;
+}
+
+.send_button {
+  width: 100%;
+  padding: 15px 0px;
+  text-align: center;
+  font-family: 'ButtonFont', Arial, sans-serif;
+  font-size: 20px;
+  background-color: #6699cc
+
+}
+
 
 /* Calculator mode selection row : */
 .mode_selection_area {
