@@ -3,12 +3,13 @@ require "sinatra/reloader"
 require "http"
 require "json"
 require "uri"
-require "./libraries/calculator.rb"  # For our calculator object.
-require "./libraries/display.rb"     # For our display.
+require "./libraries/calculator.rb"  
+require "./libraries/display.rb"     
+require "./libraries/games.rb"       
 
 MATH_API = "http://api.mathjs.org/v4/?expr="
 
-display_size = 8
+display_size = 12
 lower_display_range = 0
 upper_display_range = 7
 
@@ -18,8 +19,16 @@ upper_display_range = 7
 
 calc_display = Display.new
 calc_object = Calculator.new
+calc_tictactoe = Tic_tac_toe.new
 
 calc_start = true
+
+#========================================================
+
+#Test tic-tac-toe grid
+calc_tictactoe.reset_game
+calc_tictactoe.render_game
+
 
 #========================================================
 #========================================================
