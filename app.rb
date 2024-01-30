@@ -27,7 +27,7 @@ calc_start = true
 
 #Test tic-tac-toe grid
 calc_tictactoe.reset_game
-calc_tictactoe.render_game
+calc_tictactoe.render_game_board
 
 
 #========================================================

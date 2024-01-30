@@ -30,6 +30,19 @@ class Games
 
 #-------------------------------------------------------
 
+    def print_message(x_loc, y_loc, message)
+
+        x_counter = 0
+
+        message.each_char do |individual_char|
+            self.render_char_at(x_loc+x_counter, y_loc, individual_char)
+            x_counter += 1
+        end
+
+    end
+
+#-------------------------------------------------------
+
     def clear_game_grid()
 
         line_counter = 0
@@ -85,7 +98,7 @@ class Tic_tac_toe < Games
 
 #-------------------------------------------------------
 
-    def render_game
+    def render_game_board
 
 
         row_counter = 0
@@ -126,13 +139,13 @@ class Tic_tac_toe < Games
               
 
             for indx in 0..2
-                @game_display_array[line_counter] = temp_string_array[indx]
+                @game_display_array[line_counter] = " "*@draw_x_loc+temp_string_array[indx]
                 line_counter += 1
 
             end
         
             if row_counter < 2
-                @game_display_array[line_counter] = @game_board[1]
+                @game_display_array[line_counter] = " "*@draw_x_loc+@game_board[1]
                 line_counter += 1
             end
             
@@ -145,14 +158,16 @@ class Tic_tac_toe < Games
 
         end # Of outer while ( row )
 
-        # Let's clean up the output so that it can be displayed :
-        # add whitespace before and after the string so that it 
-        # matches the display width.
-        # create and call : clean_up_display
+        self.print_message(25, 1, "Test message")
+
+        @game_display_array.each do |display_line|
+            puts "--->#{display_line}<--"
+        end
         
     end # Of method
     
 
+    
 
 #-------------------------------------------------------
 
