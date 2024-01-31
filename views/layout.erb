@@ -14,7 +14,7 @@
 
           <% @display_array.each do |output| %>
 
-              <% if @calculator_mode == "gpt" %>
+              <% if @calculator_mode == "gpt" || @calculator_mode == "games" %>
                  <div class = "gpt_display"><%= output %></div>
 
               <% else %>    

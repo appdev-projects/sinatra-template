@@ -158,6 +158,30 @@ textarea {
   font-size: 25px;
   }
 
+/* Games */
+
+.ttt_buttons {
+  padding: 2px 0px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 2px;
+}
+
+.game_choice_buttons {
+  padding: 2px 0px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2px;
+}
+
+
+.reset_game_button {
+  padding: 2px 0px;
+  display: grid;
+  grid-template-columns: 3fr;
+  gap: 2px;
+}
+
 /* Calculator mode selection row : */
 .mode_selection_area {
   padding: 10px 5px;

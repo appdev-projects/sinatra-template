@@ -311,3 +311,50 @@ get("/gpt") do
   erb(:gpt_calculator)
 
 end
+
+
+#========================================================
+
+get("/games") do
+
+    calc_tictactoe.render_game_board
+
+    calc_display.reset_display
+
+    line_count = 0
+
+    game_display = calc_tictactoe.render_game_board
+
+    game_display.each do |display_line|
+
+      calc_display.set_display(line_count, display_line)
+      line_count += 1
+
+    end
+
+    @calculator_mode = "games"
+    
+    @display_array = calc_display.window(0, display_size)
+
+
+    erb(:games_calculator)
+  
+end
+
+
+#========================================================
+
+get("/process_move/:row/:column") do
+
+  row = params.fetch("row")
+  column = params.fetch("column")
+
+  if calc_tictactoe.check_spot(row, column) == "no"
+    calc_tictactoe.move(row, column, "X")
+    calc_tictactoe.computer_move
+  end
+  
+
+  redirect("/games")
+
+end

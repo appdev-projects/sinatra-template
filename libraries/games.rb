@@ -8,6 +8,7 @@ class Games
         @max_x = 38
         @max_y = 12
         @game_display_array = Array.new(@max_y)
+        @game_done = "no"
 
         self.clear_game_grid
 
@@ -78,7 +79,7 @@ class Tic_tac_toe < Games
          @o_img = Array[" OO ", "O  O", " OO "]
          @game_board = Array[" 0000 | 1111 | 2222 ", 
                              "------|------|------"]
-         @draw_x_loc = 10
+         @draw_x_loc = 5
 
          super
 
@@ -99,7 +100,6 @@ class Tic_tac_toe < Games
 #-------------------------------------------------------
 
     def render_game_board
-
 
         row_counter = 0
         column_counter = 0
@@ -160,13 +160,29 @@ class Tic_tac_toe < Games
 
         #self.print_message(25, 1, "Test message")
 
-        @game_display_array.each do |display_line|
-            puts "--->#{display_line}<--"
+        #@game_display_array.each do |display_line|
+        #    puts "--->#{display_line}<--"
+        #end
+
+
+        if self.is_draw()
+            self.print_message(25, 4, "DRAW GAME")
+            @game_done = "yes"
+
+        elsif 
+            self.winner_result("X") == "yes"
+            self.print_message(25, 4, "X WINS!!")
+            @game_done = "yes"
+
+        elsif 
+            self.winner_result("O") == "yes"
+            self.print_message(25, 4, "O WINS!!")
+            @game_done = "yes"
+
         end
 
 
-        self.is_draw()
-        self.winner_result("X")
+        @game_display_array
         
     end # Of method
 
@@ -203,14 +219,8 @@ class Tic_tac_toe < Games
 
        end # Of winning_combos loop
 
-
-       if self.is_draw
-          puts "THIS GAME IS A DRAW"
-       else
-          puts "KEEP PLAYING"
-
-       end
-
+       is_winner
+  
 
     end # Of method
 
@@ -223,5 +233,53 @@ class Tic_tac_toe < Games
         not played_array.include?("*")
 
     end
+
+
+
+#-------------------------------------------------------
+
+    def move(row, column, mark)
+        @spots[row.to_i][column.to_i] = mark
+    end
+
+#-------------------------------------------------------
+
+    def computer_move()
+
+      rand_num = Random.new
+
+      random_row = rand_num.rand(0..2)
+      random_column = rand_num.rand(0..2)
+
+      while self.check_spot(random_row, random_column) == "yes" && @game_done == "no"
+
+        random_row = rand_num.rand(0..2)
+        random_column = rand_num.rand(0..2)
+  
+      end
+
+      self.move(random_row, random_column, "O")
+      
+
+    end
+
+#-------------------------------------------------------
+
+    def check_spot(row, column)
+
+       space_occupied = "yes"
+
+       puts "TEST #{@spots[row.to_i][column.to_i]}"
+
+       if @spots[row.to_i][column.to_i] == "*"
+
+           space_occupied = "no"
+
+       end
+
+       space_occupied
+
+    end
+
 
 end # Of class
