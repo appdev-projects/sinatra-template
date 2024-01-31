@@ -89,9 +89,9 @@ class Tic_tac_toe < Games
     def reset_game
 
         @spots = [
-            ["X","O","*"],
-            ["O","O","*"],
-            ["X","O","X"]
+            ["*","*","*"],
+            ["*","*","*"],
+            ["*","*","*"]
         ]
 
     end
