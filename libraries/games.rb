@@ -89,9 +89,9 @@ class Tic_tac_toe < Games
     def reset_game
 
         @spots = [
-            ["*","*","*"],
-            ["*","*","*"],
-            ["*","*","*"]
+            ["X","O","*"],
+            ["O","O","*"],
+            ["X","O","X"]
         ]
 
     end
@@ -158,16 +158,53 @@ class Tic_tac_toe < Games
 
         end # Of outer while ( row )
 
-        self.print_message(25, 1, "Test message")
+        #self.print_message(25, 1, "Test message")
 
         @game_display_array.each do |display_line|
             puts "--->#{display_line}<--"
         end
+
+        self.winner_result("X")
         
     end # Of method
-    
 
-    
+#-------------------------------------------------------
+
+    def winner_result(mark)
+
+       is_winner = "no"
+
+       played_array = @spots.flatten
+
+       winning_combos = ["012","345","678","036","147","258","048","246"]
+
+       winning_combos.each do |three_indices|
+
+           if is_winner == "no"
+               counter = 0
+               three_indices.each_char do |index|
+
+              
+                  if played_array[index.to_i] != mark
+                    break
+                  else 
+                    counter += 1
+                  end # Of condition block
+
+               end # Of three_indices loop
+
+               if counter == 3
+                  is_winner = "yes"
+               end # Of winner check condition
+
+            end # Of winner condition
+
+       end # Of winning_combos loop
+
+       puts "Test -> #{is_winner}"
+
+
+    end # Of method
 
 #-------------------------------------------------------
 
