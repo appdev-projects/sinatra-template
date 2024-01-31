@@ -294,7 +294,7 @@ end # Of class
 #   |     |
 #   |    / \
 #   |   /   \
-#   |
+#   |            _ A _ _ _ _ _ _ C _ _ _ _ _ _
 #_______
 
 class Hangman < Games
@@ -303,6 +303,48 @@ class Hangman < Games
 
         @word_url = "https://random-word-api.vercel.app/api?words=1"
         @hang_counter = 0
+
+
+    end
+
+#-------------------------------------------------------
+
+    def draw_gallows
+    
+        puts "GALLOWS DRAWN"
+
+    end
+
+#-------------------------------------------------------
+
+    def draw_man
+
+      case @hang_counter
+        when 1
+          # Draw the head
+          puts "HEAD"
+      
+        when 2
+          # Draw the body
+          puts "BODY"
+
+        when 3
+          # Draw the left arm
+          puts "LEFT ARM"
+        
+        when 4
+          # Draw the right arm
+          puts "RIGHT ARM"
+
+        when 5
+          # Draw the left leg
+          puts "LEFT LEG"
+
+        when 6
+          # Finally, draw the right leg
+          puts "RIGHT LEG, HE IS HUNG !!"
+    
+      end  
 
 
     end
