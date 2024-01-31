@@ -281,5 +281,30 @@ class Tic_tac_toe < Games
 
     end
 
+end # Of class
+
+#=============================================================
+#   |------ 
+#   |     O
+#   |    O O
+#   |     O
+#   |     | 
+#   |    /|\ 
+#   |   / | \
+#   |     |
+#   |    / \
+#   |   /   \
+#   |
+#_______
+
+class Hangman < Games
+
+    def initialize
+
+        @word_url = "https://random-word-api.vercel.app/api?words=1"
+        @hang_counter = 0
+
+
+    end
 
 end # Of class
