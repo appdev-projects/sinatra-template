@@ -164,6 +164,8 @@ class Tic_tac_toe < Games
             puts "--->#{display_line}<--"
         end
 
+
+        self.is_draw()
         self.winner_result("X")
         
     end # Of method
@@ -201,12 +203,25 @@ class Tic_tac_toe < Games
 
        end # Of winning_combos loop
 
-       puts "Test -> #{is_winner}"
+
+       if self.is_draw
+          puts "THIS GAME IS A DRAW"
+       else
+          puts "KEEP PLAYING"
+
+       end
 
 
     end # Of method
 
 #-------------------------------------------------------
 
+    def is_draw()
+
+        played_array = @spots.flatten
+
+        not played_array.include?("*")
+
+    end
 
 end # Of class
