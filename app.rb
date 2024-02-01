@@ -319,11 +319,11 @@ end
 
 get("/games") do
 
+    calc_display.reset_display
+
     if game_choice == "tic-tac-toe"
 
         calc_tictactoe.render_game_board
-
-        calc_display.reset_display
 
         line_count = 0
 
@@ -340,9 +340,9 @@ get("/games") do
 
         line_count = 0
 
-        #calc_hangman.pick_word
-        #calc_hangman.check_picked_letter("P")
         game_display = calc_hangman.update_screen
+
+        won_or_lost = calc_hangman.win_or_lose
 
         game_display.each do |display_line|
 
@@ -352,6 +352,7 @@ get("/games") do
         end      
 
     end # Of condition block for hangman
+#....................................
 
     @calculator_mode = "games"
     
@@ -367,11 +368,12 @@ end
 
 get("/reset_game") do
 
+  calc_display.reset_display
+
   if game_choice == "tic-tac-toe"
 
     calc_tictactoe.reset_game
     calc_tictactoe.render_game_board
-    calc_display.reset_display
     
   elsif game_choice == "hangman"
 
@@ -416,6 +418,10 @@ end
 
 get("/process_choice/:picked_letter") do
 
-    puts "CHOICES PROCESSED HERE"
+  picked_letter = params.fetch("picked_letter")
+
+  calc_hangman.check_picked_letter(picked_letter)
+
+  redirect("/games")
 
 end

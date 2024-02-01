@@ -95,6 +95,8 @@ class Tic_tac_toe < Games
             ["*","*","*"]
         ]
 
+        @game_done = "no"
+
     end
 
 #-------------------------------------------------------
@@ -269,7 +271,6 @@ class Tic_tac_toe < Games
 
        space_occupied = "yes"
 
-       puts "TEST #{@spots[row.to_i][column.to_i]}"
 
        if @spots[row.to_i][column.to_i] == "*"
 
@@ -380,13 +381,25 @@ class Hangman < Games
 
         word = @picked_word
 
+        word = word.gsub(/[^a-z ]/i, '')
+
+        @picked_word = word
+
         word_length = word.length
 
         while word_length > @ultimate_word_length
             @picked_word = HTTP.get(@word_url)
         end
 
-        @guessed_word = "_ "*word_length
+        temp_string = ""       
+
+        word.each_char do |letter|
+       
+            temp_string += "_"
+
+        end
+
+        @guessed_word = temp_string
 
 
     end
@@ -408,30 +421,29 @@ class Hangman < Games
         picked_letter = picked_letter.upcase
 
         temporary_word = @picked_word.upcase
+        temp_guessed_word = @guessed_word
 
-        counter = 0
-
-        temp_guessed_array = @guessed_word.split("")    
-
+        array_counter = 0
         temporary_word.each_char do |letter|
 
             if letter == picked_letter
-                temp_guessed_array[counter*2] = picked_letter
+                temp_guessed_word[array_counter] = picked_letter
+                @correct_guess_counter += 1
                 guessed_correctly = "yes"
-                
+    
             end
-
-            counter += 1
+            array_counter += 1
 
         end # Of loop.
 
+        #........................
+
+        @guessed_word = temp_guessed_word
+
         if guessed_correctly == "no"
             @hang_counter += 1
-        elsif guessed_correctly == "yes"
-            @correct_guess_counter += 1
         end
 
-        @guessed_word = temp_guessed_array.join
 
     end
 
@@ -444,10 +456,17 @@ class Hangman < Games
        # Check to see if we lost :
        if @hang_counter == 6
            win_lose = "lost"
+           @game_done = "yes"
+           self.print_message(10, 5, "Sorry,")
+           self.print_message(10, 6, "You were HANGED!!")
        end
 
        if @correct_guess_counter == @picked_word.length
           win_lose = "won"
+          @game_done = "yes"
+          self.print_message(10, 5, "Congratulations,")
+          self.print_message(10, 6, "No hanging this time!!")
+
        end 
 
        win_lose   
@@ -462,6 +481,11 @@ class Hangman < Games
         @hang_counter = 0
         @correct_guess_counter = 0
         pick_word
+
+        self.clear_game_grid
+
+        @game_done = "no"
+
 
     end
 
