@@ -158,13 +158,20 @@ textarea {
   font-size: 25px;
   }
 
-/* Games */
+/* Game  */
 
 .ttt_buttons {
   padding: 2px 0px;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   gap: 2px;
+}
+
+.hangman_buttons {
+  padding: 2px 0px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  gap: 2px;  
 }
 
 .game_choice_buttons {

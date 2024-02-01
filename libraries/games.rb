@@ -284,7 +284,7 @@ class Tic_tac_toe < Games
 end # Of class
 
 #=============================================================
-#   |------ 
+#   |-----| 
 #   |     O
 #   |    O O
 #   |     O
@@ -295,7 +295,7 @@ end # Of class
 #   |    / \
 #   |   /   \
 #   |            _ A _ _ _ _ _ _ C _ _ _ _ _ _
-#_______
+#___|___
 
 class Hangman < Games
 
@@ -304,6 +304,14 @@ class Hangman < Games
         @word_url = "https://random-word-api.vercel.app/api?words=1"
         @hang_counter = 0
 
+        # For screen real estate purposes, let's limit the word length
+        # to 14 letters :
+        @ultimate_word_length = 14
+        @correct_guess_counter = 0
+        @picked_word = ""
+        @guessed_word = ""
+
+        super
 
     end
 
@@ -311,7 +319,14 @@ class Hangman < Games
 
     def draw_gallows
     
-        puts "GALLOWS DRAWN"
+        self.print_message(0,0, "   |-----|")
+
+        for count in 1..8
+            self.print_message(0,count, "   |")
+        end
+
+        self.print_message(0,9, "==|")
+
 
     end
 
@@ -321,32 +336,147 @@ class Hangman < Games
 
       case @hang_counter
         when 1
-          # Draw the head
-          puts "HEAD"
+           # Draw head
+           self.print_message(7, 1, "  O  ")
+           self.print_message(7, 2, " O O ")
+           self.print_message(7, 3, "  O  ")
       
         when 2
-          # Draw the body
-          puts "BODY"
+           # Draw the body
+           self.print_message(7, 4, "  |  ")
+           self.print_message(7, 5, "  |  ")
+           self.print_message(7, 6, "  |  ")
+           self.print_message(7, 7, "  |  ")
 
         when 3
-          # Draw the left arm
-          puts "LEFT ARM"
+           # Draw the left arm 
+           self.print_message(7, 5, " /| ")
+           self.print_message(7, 6, "/ | ")
         
         when 4
-          # Draw the right arm
-          puts "RIGHT ARM"
+           # Draw the right arm
+           self.print_message(7, 5, " /|\\")
+           self.print_message(7, 6, "/ | \\")
 
         when 5
-          # Draw the left leg
-          puts "LEFT LEG"
+           # Draw the left leg
+           self.print_message(7, 8, " /")
+           self.print_message(7, 9, "/ ")
 
         when 6
-          # Finally, draw the right leg
-          puts "RIGHT LEG, HE IS HUNG !!"
-    
+           # Draw the right leg
+           self.print_message(7, 8, " / \\")
+           self.print_message(7, 9, "/   \\")
       end  
 
 
+    end # Of method
+
+#-------------------------------------------------------
+
+    def pick_word
+
+        @picked_word = HTTP.get(@word_url).to_s
+
+        word = @picked_word
+
+        word_length = word.length
+
+        while word_length > @ultimate_word_length
+            @picked_word = HTTP.get(@word_url)
+        end
+
+        @guessed_word = "_ "*word_length
+
+
     end
+
+#-------------------------------------------------------
+
+    def draw_word 
+
+        self.print_message(0, 11, @guessed_word)
+
+    end # Of method
+
+#-------------------------------------------------------
+
+    def check_picked_letter(picked_letter)
+
+        guessed_correctly = "no"
+
+        picked_letter = picked_letter.upcase
+
+        temporary_word = @picked_word.upcase
+
+        counter = 0
+
+        temp_guessed_array = @guessed_word.split("")    
+
+        temporary_word.each_char do |letter|
+
+            if letter == picked_letter
+                temp_guessed_array[counter*2] = picked_letter
+                guessed_correctly = "yes"
+                
+            end
+
+            counter += 1
+
+        end # Of loop.
+
+        if guessed_correctly == "no"
+            @hang_counter += 1
+        elsif guessed_correctly == "yes"
+            @correct_guess_counter += 1
+        end
+
+        @guessed_word = temp_guessed_array.join
+
+    end
+
+#-------------------------------------------------------
+
+    def win_or_lose
+
+       win_lose = "dontknow"
+
+       # Check to see if we lost :
+       if @hang_counter == 6
+           win_lose = "lost"
+       end
+
+       if @correct_guess_counter == @picked_word.length
+          win_lose = "won"
+       end 
+
+       win_lose   
+
+
+    end
+
+#-------------------------------------------------------
+
+    def reset_game
+
+        @hang_counter = 0
+        @correct_guess_counter = 0
+        pick_word
+
+    end
+
+#-------------------------------------------------------
+
+    def update_screen
+
+        # Let's draw the gallows and the unlucky guy :
+
+        draw_gallows
+        draw_man
+        draw_word
+
+        @game_display_array
+     
+    end # Of method
 
 end # Of class

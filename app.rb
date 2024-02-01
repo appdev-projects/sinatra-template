@@ -20,13 +20,14 @@ upper_display_range = 7
 calc_display = Display.new
 calc_object = Calculator.new
 calc_tictactoe = Tic_tac_toe.new
+calc_hangman = Hangman.new
 
 calc_start = true
 
 #========================================================
 
 #Test tic-tac-toe grid
-game_selected = "tic-tac-toe"
+game_choice = "tic-tac-toe"
 calc_tictactoe.reset_game
 calc_tictactoe.render_game_board
 
@@ -318,7 +319,7 @@ end
 
 get("/games") do
 
-    if game_selected == "tic-tac-toe"
+    if game_choice == "tic-tac-toe"
 
         calc_tictactoe.render_game_board
 
@@ -334,17 +335,29 @@ get("/games") do
             line_count += 1
 
         end      
+#....................................
+    elsif game_choice == "hangman"
 
-    elsif game_selected == "hangman"
+        line_count = 0
 
-        puts ("HANGMAN WILL BE WRITTEN HERE....")
+        #calc_hangman.pick_word
+        #calc_hangman.check_picked_letter("P")
+        game_display = calc_hangman.update_screen
 
-    end
+        game_display.each do |display_line|
+
+          calc_display.set_display(line_count, display_line)
+          line_count += 1
+
+        end      
+
+    end # Of condition block for hangman
 
     @calculator_mode = "games"
     
     @display_array = calc_display.window(0, display_size)
 
+    @game_selected = game_choice
 
     erb(:games_calculator)
   
@@ -354,15 +367,15 @@ end
 
 get("/reset_game") do
 
-  if game_selected == "tic-tac-toe"
+  if game_choice == "tic-tac-toe"
 
     calc_tictactoe.reset_game
     calc_tictactoe.render_game_board
     calc_display.reset_display
     
-  elsif game_selected == "hangman"
+  elsif game_choice == "hangman"
 
-    puts "HANGMAN RESET"
+    calc_hangman.reset_game
 
   end
 
@@ -376,9 +389,10 @@ get ("/change_game/:game") do
 
   calc_display.reset_display
 
-  game_selected = params.fetch("game")
+  @game_selected = params.fetch("game")
+  game_choice = @game_selected
 
-  redirect("/games")
+  redirect("/reset_game")
 
 end
 
@@ -400,3 +414,9 @@ get("/process_move/:row/:column") do
 end
 
 #========================================================
+
+get("/process_choice/:picked_letter") do
+
+    puts "CHOICES PROCESSED HERE"
+
+end
