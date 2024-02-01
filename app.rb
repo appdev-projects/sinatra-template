@@ -389,8 +389,7 @@ get ("/change_game/:game") do
 
   calc_display.reset_display
 
-  @game_selected = params.fetch("game")
-  game_choice = @game_selected
+  game_choice = params.fetch("game")
 
   redirect("/reset_game")
 
