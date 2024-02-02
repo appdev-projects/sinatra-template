@@ -32,6 +32,7 @@ Scientific calculator :
 
 This can also be used as a normal calculator with an exception:  
 The higher-math functions( exponent, factorial ) calls functions from mathjs api.
+
 Here's the documentation : 
 https://mathjs.org/docs/reference/functions.html
 
