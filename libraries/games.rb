@@ -10,6 +10,8 @@ class Games
         @game_display_array = Array.new(@max_y)
         @game_done = "no"
 
+        @move_array = [0, 1, 2, 3, 4, 5, 6, 7, 8]
+
         self.clear_game_grid
 
     end
@@ -74,12 +76,18 @@ class Tic_tac_toe < Games
 
     def initialize
 
-         @spots = [["*","*","*"],["*","*","*"],["*","*","*"]]
-         @x_img = Array[" X X", "  X ", " X X"] 
-         @o_img = Array[" OO ", "O  O", " OO "]
-         @game_board = Array[" 0000 | 1111 | 2222 ", 
-                             "------|------|------"]
+         @x_img = Array["X X "," X  "] 
+         @o_img = Array[" OO ","O  O"]
+         @game_board = " E000 | E111 | E222 : M000 | M111 | M222 : E000 | E111 | E222 : ------|------|------ : E333 | E444 | E555 : M333 | M444 | M555 : E333 | E444 | E555 : ------|------|------: E666 | E777 | E888 : M666 | M777 | M888 : E666 | E777 | E888 "
          @draw_x_loc = 5
+
+         @move_array = [0, 1, 2, 3, 4, 5, 6, 7, 8]
+
+         @user_move = []
+         @computer_move = []
+
+         @turn = "user"
+         @game_done = "no"
 
          super
 
@@ -89,11 +97,15 @@ class Tic_tac_toe < Games
 
     def reset_game
 
-        @spots = [
-            ["*","*","*"],
-            ["*","*","*"],
-            ["*","*","*"]
-        ]
+        @move_array = [0, 1, 2, 3, 4, 5, 6, 7, 8]
+
+        @user_move = []
+        @computer_move = []
+
+        @game_board = " E000 | E111 | E222 : M000 | M111 | M222 : E000 | E111 | E222 :------|------|------ : E333 | E444 | E555 : M333 | M444 | M555 : E333 | E444 | E555 :------|------|------: E666 | E777 | E888 : M666 | M777 | M888 : E666 | E777 | E888 "
+
+
+        @turn = "user"
 
         @game_done = "no"
 
@@ -101,186 +113,190 @@ class Tic_tac_toe < Games
 
 #-------------------------------------------------------
 
-    def render_game_board
+    def player_move(row, column)
 
-        row_counter = 0
-        column_counter = 0
-
-        line_counter = 0
-
-        temp_string_array = Array.new(3)
-        temp_string_array[0] = @game_board[0] 
-        temp_string_array[1] = @game_board[0] 
-        temp_string_array[2] = @game_board[0] 
-
-        while row_counter != 3 do
-            while column_counter != 3 do
-
-                string_to_find = column_counter.to_s*4
-
-                if @spots[row_counter][column_counter] == "X"
-                    for indx in 0..2
-                        temp_string_array[indx] = temp_string_array[indx].sub(string_to_find, @x_img[indx])
-                    end
-
-                elsif @spots[row_counter][column_counter] == "O"         
-                    for indx in 0..2
-                        temp_string_array[indx] = temp_string_array[indx].sub(string_to_find, @o_img[indx])
-                    end
-
-                else 
-                    for indx in 0..2
-                        temp_string_array[indx] = temp_string_array[indx].sub(string_to_find, "    ")
-                    end
-
-                end # Of condition block
-
-                column_counter += 1
-
-            end # Of inner while ( column )
-              
-
-            for indx in 0..2
-                @game_display_array[line_counter] = " "*@draw_x_loc+temp_string_array[indx]
-                line_counter += 1
-
-            end
+        move_num = row*3+column
         
-            if row_counter < 2
-                @game_display_array[line_counter] = " "*@draw_x_loc+@game_board[1]
-                line_counter += 1
-            end
-            
-            column_counter = 0
-            row_counter += 1
+        if move_available(move_num)
+            @user_move << move_num
+            @move_array.delete(move_num)
+            @turn = "computer"
+        end 
 
-            temp_string_array[0] = @game_board[0] 
-            temp_string_array[1] = @game_board[0] 
-            temp_string_array[2] = @game_board[0] 
+    end
 
-        end # Of outer while ( row )
+#-------------------------------------------------------
 
-        #self.print_message(25, 1, "Test message")
+    def computer_move
 
-        #@game_display_array.each do |display_line|
-        #    puts "--->#{display_line}<--"
-        #end
+        if @turn == "computer"
 
+            random_number = @move_array.sample
 
-        if self.is_draw()
-            self.print_message(25, 4, "DRAW GAME")
-            @game_done = "yes"
+            random_row = random_number / 3
+            random_column = random_number % 3
+        
+            @move_array.delete(random_number)
 
-        elsif 
-            self.winner_result("X") == "yes"
-            self.print_message(25, 4, "X WINS!!")
-            @game_done = "yes"
+            @computer_move << random_number
 
-        elsif 
-            self.winner_result("O") == "yes"
-            self.print_message(25, 4, "O WINS!!")
-            @game_done = "yes"
+            @turn = "user"
 
         end
 
 
-        @game_display_array
+    end
+
+#-------------------------------------------------------
+
+    def get_game_state
+
+        state_message = "no_wins"
+
+        if is_draw == "yes"
+            state_message = "Draw"
+
+        elsif is_win(@user_move) == "yes" 
+            state_message = "You win"
+
+        elsif is_win(@computer_move) == "yes"
+            state_message = "Computer wins"
+
+        end
         
-    end # Of method
+        state_message
+
+    end # Of method.
 
 #-------------------------------------------------------
 
-    def winner_result(mark)
+    def is_win(move_array)
 
-       is_winner = "no"
+        is_winner = "no"
 
-       played_array = @spots.flatten
+        winning_combos = [[0,1,2],[3,4,5],[6,7,8],[0,3,6],[1,4,7],[2,5,8],[0,4,8],[2,4,6]]
 
-       winning_combos = ["012","345","678","036","147","258","048","246"]
+        winning_combos.each do |combo_number_array|
 
-       winning_combos.each do |three_indices|
+            intersecting_array = move_array & combo_number_array
+            
+            if intersecting_array.length == 3
+                is_winner = "yes"
+                @game_done = "yes"
 
-           if is_winner == "no"
-               counter = 0
-               three_indices.each_char do |index|
+                break
+            end
 
-              
-                  if played_array[index.to_i] != mark
-                    break
-                  else 
-                    counter += 1
-                  end # Of condition block
 
-               end # Of three_indices loop
+        end # Of outer loop.
 
-               if counter == 3
-                  is_winner = "yes"
-               end # Of winner check condition
+        is_winner
 
-            end # Of winner condition
+    end # Of method.
 
-       end # Of winning_combos loop
-
-       is_winner
-  
-
-    end # Of method
 
 #-------------------------------------------------------
 
-    def is_draw()
+    def is_draw
 
-        played_array = @spots.flatten
+        game_is_draw = "no"
 
-        not played_array.include?("*")
+        if @move_array.length == 0
+            game_is_draw = "yes"
+            @game_done = "yes"
+
+        end
+
+    end # Of method.
+
+#-------------------------------------------------------
+
+    def move_available(move_number)
+
+        @move_array.include?(move_number)
+
+    end # of method.
+
+#-------------------------------------------------------
+    
+    def render_game_board
+
+
+        #Reset board to be re-drawn
+
+        @game_board = " E000 | E111 | E222 : M000 | M111 | M222 : E000 | E111 | E222 :------|------|------ : E333 | E444 | E555 : M333 | M444 | M555 : E333 | E444 | E555 :------|------|------: E666 | E777 | E888 : M666 | M777 | M888 : E666 | E777 | E888 "
+
+        # Render user moves first :
+        #@user_move
+        #@computer_move
+        #@game_board
+
+        @user_move.each do |user_num|
+
+            middle_repl_string = "M"+user_num.to_s*3
+            edge_repl_string = "E"+user_num.to_s*3
+            
+            @game_board = @game_board.gsub(middle_repl_string, @x_img[1])
+            @game_board = @game_board.gsub(edge_repl_string, @x_img[0])
+
+        end # Of render loop.
+
+       
+        # Now the computer moves
+
+        @computer_move.each do |comp_num|
+
+            middle_repl_string = "M"+comp_num.to_s*3
+            edge_repl_string = "E"+comp_num.to_s*3
+            
+            @game_board = @game_board.gsub(middle_repl_string, @o_img[1])
+            @game_board = @game_board.gsub(edge_repl_string, @o_img[0])
+
+        end # Of render loop.
+
+        # Finally, clean up :
+
+        counter = 0
+        while counter < 9 do
+
+            middle_repl_string = "M"+counter.to_s*3
+            edge_repl_string = "E"+counter.to_s*3
+            
+            @game_board = @game_board.gsub(middle_repl_string, "    ")
+            @game_board = @game_board.gsub(edge_repl_string, "    ")
+
+            counter += 1
+
+        end # Of render loop.
+
+        @game_display_array = @game_board.split(":")
+
+        #---------------TEST ONLY ------------------- :
+
+        #@game_display_array.each do |display_line|
+        #    puts "--> #{display_line}"
+        #end # of test display
+
+        #puts " "
+        #puts " "
+        #puts "Movement array ->>>> #{@move_array}"
+
+        @game_display_array
+
+
+    end # Of method.
+
+#-------------------------------------------------------
+
+    def game_done
+
+        @game_done
 
     end
 
-
-
 #-------------------------------------------------------
 
-    def move(row, column, mark)
-        @spots[row.to_i][column.to_i] = mark
-    end
 
-#-------------------------------------------------------
-
-    def computer_move()
-
-      rand_num = Random.new
-
-      random_row = rand_num.rand(0..2)
-      random_column = rand_num.rand(0..2)
-
-      while self.check_spot(random_row, random_column) == "yes" && @game_done == "no"
-
-        random_row = rand_num.rand(0..2)
-        random_column = rand_num.rand(0..2)
-  
-      end
-
-      self.move(random_row, random_column, "O")
-      
-
-    end
-
-#-------------------------------------------------------
-
-    def check_spot(row, column)
-
-       space_occupied = "yes"
-
-
-       if @spots[row.to_i][column.to_i] == "*"
-
-           space_occupied = "no"
-
-       end
-
-       space_occupied
-
-    end
 
 end # Of class
 
@@ -448,6 +464,7 @@ class Hangman < Games
            @game_done = "yes"
            self.print_message(10, 5, "Sorry,")
            self.print_message(10, 6, "You were HANGED!!")
+           self.print_message(0, 11, @picked_word.upcase)
        end
 
        if @correct_guess_counter == @picked_word.length

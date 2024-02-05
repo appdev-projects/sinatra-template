@@ -323,11 +323,16 @@ get("/games") do
 
     if game_choice == "tic-tac-toe"
 
-        calc_tictactoe.render_game_board
-
-        line_count = 0
 
         game_display = calc_tictactoe.render_game_board
+
+        game_state_string = calc_tictactoe.get_game_state
+
+        if game_state_string != "no_wins"
+            calc_tictactoe.print_message(20, 4, game_state_string)
+        end
+
+        line_count = 0
 
         game_display.each do |display_line|
 
@@ -404,12 +409,22 @@ get("/process_move/:row/:column") do
   row = params.fetch("row")
   column = params.fetch("column")
 
-  if calc_tictactoe.check_spot(row, column) == "no"
-    calc_tictactoe.move(row, column, "X")
-    calc_tictactoe.computer_move
-  end
-  
+  if calc_tictactoe.game_done == "no" 
 
+      calc_tictactoe.player_move(row.to_i, column.to_i)
+      calc_tictactoe.get_game_state
+
+  end
+
+
+  if calc_tictactoe.game_done == "no" 
+
+      calc_tictactoe.computer_move
+      calc_tictactoe.get_game_state
+
+  end
+
+  
   redirect("/games")
 
 end
