@@ -1,0 +1,78 @@
+    <div class="game_choice_buttons">
+    
+      <a href="/change_game/tic-tac-toe"><div class="button games_button">tic-tac-toe</div></a>
+      <a href="/change_game/hangman"><div class="button basic_button">Hangman</div></a>
+
+
+    </div>
+
+    <% if @game_selected == "tic-tac-toe" %>
+    
+    <div class="ttt_buttons">
+    
+      <a href="/process_move/0/0"><div class="button function">*</div></a>
+      <a href="/process_move/0/1"><div class="button function">*</div></a>
+      <a href="/process_move/0/2"><div class="button function">*</div></a>
+
+
+      <a href="/process_move/1/0"><div class="button function">*</div></a>
+      <a href="/process_move/1/1"><div class="button function">*</div></a>
+      <a href="/process_move/1/2"><div class="button function">*</div></a>
+
+
+      <a href="/process_move/2/0"><div class="button function">*</div></a>
+      <a href="/process_move/2/1"><div class="button function">*</div></a>
+      <a href="/process_move/2/2"><div class="button function">*</div></a>
+
+
+    </div>
+
+    <% elsif @game_selected == "hangman" %>
+
+    <div class="hangman_buttons">
+    
+      <a href="/process_choice/A"><div class="button number">A</div></a>
+      <a href="/process_choice/B"><div class="button number">B</div></a>
+      <a href="/process_choice/C"><div class="button number">C</div></a>
+      <a href="/process_choice/D"><div class="button number">D</div></a>
+      <a href="/process_choice/E"><div class="button number">E</div></a>
+
+      <a href="/process_choice/F"><div class="button number">F</div></a>
+      <a href="/process_choice/G"><div class="button number">G</div></a>
+      <a href="/process_choice/H"><div class="button number">H</div></a>
+      <a href="/process_choice/I"><div class="button number">I</div></a>
+      <a href="/process_choice/J"><div class="button number">J</div></a>
+
+      <a href="/process_choice/K"><div class="button number">K</div></a>
+      <a href="/process_choice/L"><div class="button number">L</div></a>
+      <a href="/process_choice/M"><div class="button number">M</div></a>
+      <a href="/process_choice/N"><div class="button number">N</div></a>
+      <a href="/process_choice/O"><div class="button number">O</div></a>
+
+      <a href="/process_choice/P"><div class="button number">P</div></a>
+      <a href="/process_choice/Q"><div class="button number">Q</div></a>
+      <a href="/process_choice/R"><div class="button number">R</div></a>
+      <a href="/process_choice/S"><div class="button number">S</div></a>
+      <a href="/process_choice/T"><div class="button number">T</div></a>
+
+      <a href="/process_choice/U"><div class="button number">U</div></a>
+      <a href="/process_choice/V"><div class="button number">V</div></a>
+      <a href="/process_choice/W"><div class="button number">W</div></a>
+      <a href="/process_choice/X"><div class="button number">X</div></a>
+      <a href="/process_choice/Y"><div class="button number">Y</div></a>
+
+      <a href="/process_choice/Z"><div class="button number">Z</div></a>
+
+
+    </div>
+
+    <% end %>
+
+
+
+    <div class="control_buttons">
+    
+      <a href="/reset_game"><div class="control_button_style number">RESET</div></a>
+
+
+    </div>
