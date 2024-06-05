@@ -3,10 +3,13 @@ require "sinatra/reloader"
 require 'net/http'
 require 'json'
 
+
+
+
 def getRecipe(search_term)
-  API_ID = ENV.fetch("API_ID")
-  API_KEY = ENV.fetch("API_KEY")
-  url = URI("https://api.edamam.com/api/recipes/v2?type=public&q=#{search_term}&app_id=#{API_ID}&app_key=#{API_KEY}")
+  api_key = ENV.fetch("API_KEY")
+  api_id = ENV.fetch("API_ID")
+  url = URI("https://api.edamam.com/api/recipes/v2?type=public&q=#{search_term}&app_id=#{api_id}&app_key=#{api_key}")
   response = Net::HTTP.get(url)
   response_obj = JSON.parse(response)
   results = response_obj.fetch("hits")
@@ -19,7 +22,7 @@ get("/") do
 end
 
 post("/recipe_search") do
-
+  
   search_term = params.fetch("search_term")
   @results = getRecipe(search_term)
 
