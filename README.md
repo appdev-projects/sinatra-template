@@ -1,4 +1,4 @@
-# sinatra-template
+# simple recipe finder app
 
 Use this repository to create new Sinatra apps. 
 
