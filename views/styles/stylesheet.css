@@ -1,0 +1,221 @@
+@font-face{ 
+  font-family: 'CalculatorFont';
+  src: url('../fonts/Calculator.ttf') format('truetype');
+}
+
+@font-face{
+  font-family: 'ButtonFont';
+  src: url('open-sauce.sans-black.ttf') format('truetype');
+}
+
+
+/* Calculator body */
+
+.calculator {
+
+  border: 5px solid;
+  border-radius: 5px;
+  background-color: black;
+  padding: 10px 10px;
+  margin: auto;
+  width: 60%;
+  
+  justify-content: center;
+  width: 400px;
+}
+
+/* LCD display : */
+
+.display_area {
+  border: 1px solid;
+  background-color: #9fa1a6;
+  margin-bottom: 10px;
+}
+
+.display {
+white-space: pre;
+padding: 0px 10px;
+text-align: right;
+font-family: 'CalculatorFont', Arial, sans-serif;
+font-size: 25px;
+}
+
+/* Buttons (Basic calculator) : */
+
+a:link, a:visited {
+  text-decoration: none;
+  color: black;
+}
+
+.buttons {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 2px;
+}
+
+.bottom_row_buttons {
+  padding: 2px 0px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 2fr;
+  gap: 2px;
+}
+
+.button {
+  padding: 20px 0px;
+  text-align: center;
+  font-family: 'ButtonFont', Arial, sans-serif;
+  font-size: 20px;
+}
+
+.all_clear_button {
+  background-color: red;
+}
+
+.number {
+  background-color: whitesmoke;
+}
+
+.function {
+  background-color: yellow;
+}
+
+/* Scientific calculator */
+
+.sci_regular_buttons {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 2px;
+}
+
+.sci_button {
+  padding: 20px 0px;
+  text-align: center;
+  font-family: 'ButtonFont', Arial, sans-serif;
+  font-size: 20px;
+}
+
+
+.sci_last_row {
+  padding: 2px 0px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 2fr;
+  gap: 2px;
+}
+
+
+.math_button {
+  background-color: #6699cc
+}
+
+/* Chat GPT */
+
+.controls_buttons {
+  display: grid;
+  grid-template-columns: 1fr 3fr 1fr;
+  gap: 2px;
+}
+
+.control_button_style {
+  padding: 20px 0px;
+  margin: 20px;
+  text-align: center;
+  font-family: 'ButtonFont', Arial, sans-serif;
+  font-size: 30px;
+}
+
+.control_color {
+  background-color:rgb(22, 75, 50)
+}
+
+.clear_control_color {
+  background-color: yellow;
+}
+
+textarea {
+  width: 100%;
+  border-radius: 4px;
+  background-color: #9fa1a6;
+  font-size: 25px;
+  font-family: 'CalculatorFont', Arial, sans-serif;
+  resize: none;
+}
+
+.send_button {
+  width: 100%;
+  padding: 15px 0px;
+  text-align: center;
+  font-family: 'ButtonFont', Arial, sans-serif;
+  font-size: 20px;
+  background-color: #6699cc
+
+}
+
+.gpt_display {
+  white-space: pre;
+  padding: 0px 10px;
+  text-align: left;
+  font-family: 'CalculatorFont', Arial, sans-serif;
+  font-size: 25px;
+  }
+
+/* Game  */
+
+.ttt_buttons {
+  padding: 2px 0px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 2px;
+}
+
+.hangman_buttons {
+  padding: 2px 0px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  gap: 2px;  
+}
+
+.game_choice_buttons {
+  padding: 2px 0px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2px;
+}
+
+
+.reset_game_button {
+  padding: 2px 0px;
+  display: grid;
+  grid-template-columns: 3fr;
+  gap: 2px;
+}
+
+/* Calculator mode selection row : */
+.mode_selection_area {
+  padding: 10px 5px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 2px;
+}
+
+.mode_buttons {
+  padding: 20px 0px;
+  text-align: center;
+  font-family: 'ButtonFont', Arial, sans-serif;
+  font-size: 20px;
+}
+
+.basic_button {
+  background-color: teal;
+}
+
+.scientific_button {
+  background-color: blue;
+}
+
+.gpt_button {
+  background-color: green;
+}
+
+.games_button {
+  background-color: orangered;
+}
