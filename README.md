@@ -1,3 +1,3 @@
-# Advice of a day
+# Food calories
 
-Build a web application that gives out a random advice in case user doesn't know what to do.
+A simple web application that displays calories of food, provided by user.
