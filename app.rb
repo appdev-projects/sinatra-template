@@ -3,12 +3,12 @@ require "http"
 require "json"
 
 get("/") do
-  redirect("/advice")
+  redirect("/joke")
 end
 
-get "/advice" do
-  raw_response = HTTP.get("https://api.adviceslip.com/advice")
-  advice_data = JSON.parse(raw_response)
-  @advice = advice_data.fetch("slip").fetch("advice")
-  erb(:advice)
+get("/joke") do
+  raw_response = HTTP.get("https://api.chucknorris.io/jokes/random")
+  joke_data = JSON.parse(raw_response)
+  @joke = joke_data.fetch("value")
+  erb :joke
 end
