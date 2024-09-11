@@ -1,9 +1,14 @@
 require "sinatra"
-require "sinatra/reloader"
+require "http"
+require "json"
 
 get("/") do
-  "
-  <h1>Welcome to your Sinatra App!</h1>
-  <p>Define some routes in app.rb</p>
-  "
+  redirect("/joke")
+end
+
+get("/joke") do
+  raw_response = HTTP.get("https://api.chucknorris.io/jokes/random")
+  joke_data = JSON.parse(raw_response)
+  @joke = joke_data.fetch("value")
+  erb :joke
 end
