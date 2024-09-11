@@ -1,3 +1,3 @@
-# Random Chuck Norris jokes
+# Food calories
 
-A simple web application that displays random Chuck Norris jokes.
+A simple web application that displays calories of food, provided by user.
