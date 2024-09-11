@@ -1,13 +1,21 @@
-<!-- views/index.erb -->
 <!DOCTYPE html>
 <html>
 <head>
   <title>Random Chuck Norris Joke</title>
+  <link rel="stylesheet" type="text/css" href="/styles.css">
 </head>
 <body>
-  <h1>Random Chuck Norris Joke</h1>
-  <p><%= @joke %></p>
+  <div class="banner">
+    <img id="chuck-norris-image" src="thumbnails/chuck.jpg" alt="Chuck Norris">
+  </div>
 
+  <div class="container">
+    <h1>Random Chuck Norris Joke</h1>
+    <p><%= @joke %></p>
+  </div>
+
+<div class="link">
   <a href="/joke">Another one!</a>
+</div>
 </body>
 </html>
