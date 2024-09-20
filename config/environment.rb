@@ -1,10 +1,5 @@
 require "./app"
 
-configure do
-  # GitHub Pages and Render deployment
-  set(:public_folder, "./")
-end
-
 configure :development do
   # we would also like a nicer error page in development
   require "better_errors"
