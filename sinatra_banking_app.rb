@@ -5,22 +5,57 @@ get("/") do
   erb(:home)
 end
 
-get("/process_roll?") do
-  @num_dice = params.fetch("dice")
-  @num_sides = params.fetch("sides")
+get("/open_account") do
+  @account_number = params.fetch("account_number")
+  @amount = params.fetch("amount")
+  
   
  
-  @rolls = []
-
-  @num_dice.to_i.times do 
-    die = rand(1..@num_sides.to_i)
-
-    @rolls.push(die)
-  end
 
   
-  erb(:process_roll)
+  erb(:open_account)
 end
+
+get("/close_account") do
+  @account_number = params.fetch("account_number")
+  
+  
+ 
+
+  
+  erb(:close_account)
+end
+
+get("/deposit") do
+  @account_number = params.fetch("account_number")
+  @amount = params.fetch("amount")
+  
+ 
+
+  
+  erb(:deposit)
+end
+
+get("/withdraw") do
+  @account_number = params.fetch("account_number")
+  @amount = params.fetch("amount")
+  
+ 
+
+  
+  erb(:withdraw)
+end
+
+get("/check_balance") do
+  @account_number = params.fetch("account_number")
+
+  
+ 
+
+  
+  erb(:check_balance)
+end
+
 class BankAccount
   attr_reader :balance
 
