@@ -1,16 +1,23 @@
 <h1>Open New Account</h1>
 
-<form action="/wizard_add">
-  <label for="form_first_number">
-    Add this:
+<form action="/open_account_confirmation">
+  <div>
+  <label for="form_full_name">
+    Enter your full name: 
   </label>
-  <input id="form_first_number" name="first_number" text="text">
-  <label for="form_second_number">
-    to this:
+  <input id="form_full_name" name="full_name" text="text">
+  </div>
+  
+  <label for="form_amount">
+    Enter the dollar amount you would like to open your account with:
   </label>
-  <input id="form_second_number" name="second_number" text="text">
-
+  <input id="form_amount" name="amount" text="text">
+  <div>
   <button>
-    Add!
+    Create account!
   </button>
+ </div>
 </form>
+
+<p>
+<a href="/">Go home</a>
