@@ -1,5 +1,11 @@
+<% if @full_name == "" %>
+            <h1>ERROR!! You must enter your full name to open a new account.</h1>
+            <p>
+            <a href="/">Home page</a>
+<% else %>
 <h1> Account successfully created! </h1>
 <P>
 <div><%= @full_name %>'s new account number is: <emp><%= $accounts.length %></emp>. </div>
 <p>
 <a href="/">Go home</a>
+<% end %>
