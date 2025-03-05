@@ -88,13 +88,7 @@ get("/check_balance_confirmation") do
   erb(:"/check_balance/check_balance_confirmation")
 end
 
-# class BankAccount
-#   attr_reader :balance
 
-#   def initialize
-#     @balance = 0.0
-#     return
-#   end
 
 #   def deposit
 #     puts "Please enter the amount you would like to deposit: "
@@ -124,27 +118,6 @@ end
 #     return
 #   end
 
-#   def show_balance
-#     return @balance
-#   end
-
-#   def deposit_test(amount)
-#     @balance = @balance + amount.to_f
-#     return @balance
-#   end
-
-#   def withdraw_test(amount)
-#     @balance = @balance - amount.to_f
-#     return @balance
-#   end
-# end
-
-# # array used to contain created new BankAccount objects
-# @accounts = []
-
-# # variables used to store menu selection number and account number
-# selection = 1
-# account_number = 0
 
 # # begin program
 # while selection > 0 && selection < 6
