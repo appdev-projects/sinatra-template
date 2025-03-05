@@ -9,10 +9,15 @@
          <h2>Error! Please enter a Withdrawal amount greater than $0.</h2>
          <p>
          <a href="/">Home page</a>
+<% elsif @amount.to_i > $accounts[@account_number.to_i - 1].to_i %>
+         <h2>Error! The amount you are requested will overdraw your bank account.</h2>
+         <h3>Your available funds for withdrawal are: $<%= $accounts[@account_number.to_i - 1].to_f %></h3>
+         <p>
+         <a href="/">Home page</a>
 <% else %>
 <% $accounts[@account_number.to_i - 1] = $accounts[@account_number.to_i - 1].to_f - @amount.to_f %>
 <h1>Your withdrawal was successful!</h1>
-<h2>Your account number is: <%= @account_number.to_f %></h2>
+<h2>Your account number is: <%= @account_number %></h2>
 <p>
 <h2>Your new account balance is: $<%= $accounts[@account_number.to_i - 1] %></h2>
 <p>

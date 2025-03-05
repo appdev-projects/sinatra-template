@@ -12,7 +12,7 @@
 <% else %>
 <% $accounts[@account_number.to_i - 1] = $accounts[@account_number.to_i - 1].to_f + @amount.to_f %>
 <h1>Your deposit was successful!</h1>
-<h2>Your account number is: <%= @account_number.to_f %></h2>
+<h2>Your account number is: <%= @account_number %></h2>
 <p>
 <h2>Your new account balance is: $<%= $accounts[@account_number.to_i - 1] %></h2>
 <p>
