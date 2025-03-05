@@ -1,2 +1,16 @@
-<div></div>
-<div><a href"/">Home page</a>
+ <% if @account_number.to_i == 0 || !@account_number.to_s.match(/\d/) || $accounts[@account_number.to_i - 1].nil? %>
+            <h1>ERROR!! Invalid bank account number. Please enter a valid account number, or Create a new account.</h1>
+            <p>
+            <a href="/">Home page</a>
+    <% elsif $accounts[@account_number.to_i - 1].to_i > 0 %>
+    <h1>Information! You still have a balance remaining in your account: $ <%= $accounts[@account_number.to_i - 1] %>.</h1>
+        <h2> You must have a zero balance in your account before closing it.</h2>
+         <p>
+         <a href="/">Home page</a>   
+    <% else %>%
+    <% $accounts[@account_number.to_i - 1] = nil %>
+    <h1>Your account is now closed!</h1>
+<h3>Thank you for banking with us. Come back again!</3>
+<p>
+<a href="/">Home page</a>
+    <% end %>

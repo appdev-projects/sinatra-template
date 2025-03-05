@@ -1,14 +1,14 @@
 require "sinatra"
 require "sinatra/reloader"
 
-@accounts = []
-@accounts.push(1)
+$accounts = []
+
 
 get("/") do
   erb(:home)
 end
 
-get("/open_account/open_account") do
+get("/open_account") do
  
    erb(:"/open_account/open_account")
  end
@@ -16,7 +16,8 @@ get("/open_account/open_account") do
 get("/open_account_confirmation") do
  @full_name = params.fetch("full_name")
  @amount = params.fetch("amount")
- puts @accounts.class
+ 
+  $accounts.push(@amount)
  
   erb(:"/open_account/open_account_confirmation")
 end
@@ -29,14 +30,24 @@ end
 get("/close_account_confirmation") do
   @account_number = params.fetch("account_number")
   
+ # if @account_number.to_i == 0 || !@account_number.to_s.match(/\d/) || $accounts[@account_number.to_i - 1].nil?
+    #       puts "ERROR!! Invalid bank account number. Please enter a valid account number, or Create a new account."
+    #       puts "Please press Enter to proceed.."
+    #       waiting_for_user_input = gets
+    #     elsif @accounts[account_number.to_i - 1].show_balance.to_f > 0
+    #       puts "Information! You still have a balance remaining in your account: $" + @accounts[account_number.to_i - 1].show_balance.to_s + ". You must have a zero balance in your account before closing it."
+    #       puts "Please press Enter to proceed.."
+    #       waiting_for_user_input = gets
+    #     else
+    #         $accounts[@account_number.to_i - 1] = nil
+
+    #     end
+
    erb(:"/close_account/close_account_confirmation")
  end
 
 get("/deposit") do
     
- 
-
-  
   erb(:"/deposit/deposit")
 end
 
@@ -44,7 +55,7 @@ get("/deposit_confirmation") do
   @account_number = params.fetch("account_number")
   @amount = params.fetch("amount")
   
- 
+  $accounts[@account_number.to_i - 1] = $accounts[@account_number.to_i - 1].to_f + @amount.to_f 
 
   
   erb(:"/deposit/deposit_confirmation")
@@ -60,27 +71,20 @@ get("/withdraw_confirmation") do
   @account_number = params.fetch("account_number")
   @amount = params.fetch("amount")
   
- 
+  $accounts[@account_number.to_i - 1] = $accounts[@account_number.to_i - 1].to_f - @amount.to_f  
 
   
   erb(:"/withdraw/withdraw_confirmation")
 end
 
 get("/check_balance") do
-
- 
-
-  
+    
   erb(:"/check_balance/check_balance")
 end
 
 get("/check_balance_confirmation") do
   @account_number = params.fetch("account_number")
-
-  
  
-
-  
   erb(:"/check_balance/check_balance_confirmation")
 end
 

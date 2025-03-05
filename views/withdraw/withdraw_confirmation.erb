@@ -1,2 +1,8 @@
-<div></div>
-<div><a href"/">Home page</a>
+
+<h1>Your withdrawal was successful!</h1>
+<h2>Your account number is: <%= @account_number %></h2>
+<p>
+<h2>Your new account balance is: $<%= $accounts[@account_number.to_i - 1] %></h2>
+<p>
+
+<div><a href="/">Home page</a>
