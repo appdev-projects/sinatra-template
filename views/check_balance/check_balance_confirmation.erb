@@ -1,6 +1,14 @@
+<% if $accounts[@account_number.to_i - 1].nil? %>
+<h1>Information! You entered an invalid bank account number.</h1>
+        <h2> Please try re-submitting your query with a valid bank account number.</h2>
+         <p>
+         <a href="/">Home page</a> 
+
+<% else %>
 <h1>Your account number is: <%= @account_number %></h1>
 <p>
 <h2>Your account balance is: $<%= $accounts[@account_number.to_i - 1] %>.</h2>
 <p>
 
 <div><a href="/">Home page</a>
+<% end %>
