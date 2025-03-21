@@ -1,10 +1,14 @@
 require "sinatra"
 require "sinatra/reloader"
+require "http"
+require "json"
+require "dotenv/load"
+$gmaps_key = ENV.fetch("GMAPS_KEY")
 
 $accounts = []
 
-
 get("/") do
+  
   erb(:home)
 end
 
