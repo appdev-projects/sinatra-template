@@ -1,4 +1,4 @@
-require "./app"
+require "./sinatra_banking_app"
 
 configure :development do
   # we would also like a nicer error page in development
