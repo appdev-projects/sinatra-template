@@ -2,7 +2,7 @@
 
 ### Requirements:
 - There should be a homepage
-  - Should have a title (Mood Ring) and description
+  - Should have a title (i.e."Mood Ring") and description
 - There should be a way to navigate to pages representing different colors (minium of the three primary colors)
 - Color Pages
   - Should have a title that corresponds to the color
@@ -22,6 +22,7 @@ Core Concepts to practice:
 - **Layout file:** Using a layout file for shared headers and navigation. 
 
 Stretch Concepts to practice:
+- **Dynamic Routes:** Add an input form that lets users select a color
 - **Forms:** Add an input form that lets users select a color
 - **Query parameters:** Add query params like `/mood?color=yellow`
 - **Service Objects:** Create a service object to handle selecting a random mood word
