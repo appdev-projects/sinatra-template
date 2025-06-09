@@ -16,3 +16,5 @@ configure do
   set(:database, { adapter: "sqlite3", database: "db/development.sqlite3" })
 end
 ```
+
+Some rights reserved — see [LICENSE.txt](LICENSE.txt)
