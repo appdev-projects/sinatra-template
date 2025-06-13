@@ -18,6 +18,17 @@
 - Step 5: To the dynamic erb file, use dynamic values to pass in a heading with the color name and dynamic mood word description
 - Step 6: Make sure the background changes to match the params color
 
+### Student Refactor Example:
+- Instead of if statemnts, make moods a hash with the colors as keys and the mood words as values In an array
+```
+MOODS = {
+  "red" => ["urgent", "angry", "important", "mcdonalds", "emergency", "danger"],
+  "yellow" => ["easy", "happy", "golden", "banana", "minion", "star"],
+  "blue" => ["sad", "glad", "blue", "sky", "sea", "calm"],
+  "green" => ["peaceful", "nature", "fresh", "growth", "harmony", "forest"] # You can add more colors!
+}
+```
+
 ### Adding a Form
 - Step 1: Add a select form to the homepage (where? erb? route?)
   - Figure out how to make a form
