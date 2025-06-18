@@ -41,3 +41,24 @@ get("/color/:my_color") do
   end
   erb(:colors)
 end
+
+post("/color") do
+  # pp params.fetch("my_color")
+  binding.irb
+
+  pp params
+
+   @my_color = params['my_color'].downcase
+  if @my_color == "blue"
+    @mood_word = ["sad", "glad", "blue", "sky", "sea", "calm"].sample
+  elsif @my_color == "red"
+    @mood_word = ["urgent", "angry", "important", "mcdonalds", "emergency", "danger"].sample
+  elsif @my_color == "yellow"
+    @mood_word = ["easy", "happy", "golden", "banana", "minion", "star"].sample
+  elsif @my_color == "green"
+    @mood_word = ["envious", "grow", "money", "nature", "tree", "go"].sample
+  else
+    @mood_word = "I'm confused"
+  end
+  erb(:colors)
+end

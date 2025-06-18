@@ -30,7 +30,7 @@ MOODS = {
 ```
 
 ### Adding a Form
-- Step 1: Add a select form to the homepage (where? erb? route?)
+- Step 1: Add a select form to the home page (where? erb? route?)
   - Figure out how to make a form
   - Figure out how to format a select form
 - Step 2: Create form action logic route (what type of request will this be?)
