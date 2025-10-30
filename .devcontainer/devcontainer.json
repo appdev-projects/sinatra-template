@@ -28,6 +28,9 @@
   // Use 'postCreateCommand' to run commands after the container is created.
   "postCreateCommand": "bin/setup",
 
+  // Use 'postAttachCommand' to run commands each time you attach to the container.
+  "postAttachCommand": "bin/fix-ports",
+
   // Configure tool-specific properties.
   "customizations": {
     "vscode": {
