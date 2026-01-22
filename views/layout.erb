@@ -1,12 +1,18 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Sinatra Template</title>
+    <title>Mood Ring</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
   </head>
 
   <body>
+    <nav>
+      <div><a href="/">Home</a></div>
+      <div><a href="/color/red">Red</a></div>
+      <div><a href="/color/yellow">Yellow</a></div>
+      <div><a href="/color/blue">Blue</a></div>
+    </nav>
     <%= yield %>
   </body>
 </html>
