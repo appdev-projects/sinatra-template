@@ -1,12 +1,30 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Sinatra Template</title>
+    <title>Mood Ring Page</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
   </head>
 
   <body>
+<!--    <nav>
+      <div><a href="/">Home</a></div>
+      <div><a href="/color/red">Red</a></div>
+      <div><a href="/color/yellow">Yellow</a></div>
+      <div><a href="/color/blue">Blue</a></div>
+    </nav>-->
+
+    <form action="/color" method="post">
+      <label for="color">Choose a color:</label>
+      <select id="color" name="my_color">
+        <option value="">Select a color</option>
+        <option value="red">Red</option>
+        <option value="yellow">Yellow</option>
+        <option value="blue">Blue</option>
+      </select>
+      <input type="submit">
+    </form>
+
     <%= yield %>
   </body>
 </html>
